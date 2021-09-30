@@ -10,195 +10,195 @@
 	<br/>
 	</div>
   {% endif %}
-  <section>
-  	<p>Before launching the sim, please fill the talents and buffs information below</p>
-	</section>
-	<section class="">
-   	<form action="{{ url_for('simulator.simulate_fight') }}" method="post"> 
-    	<div class="row gy-5">
-				<div class="col-sm">
-					<div class="p-3 border bg-light">
-						<h3>Stuff Values </h3>
-			 			<ul>
-							<li>
-								<label for="intel">Intellect</label> : 
-								<input type="text" id ="intel" name="intel" {% if toon is defined %} value="{{ toon.intel }}" {% else %} value="100" {% endif %} />
-							</li>
-							<li>
-								<label for="spirit">Spirit</label> : 
-								<input type="text" id="spirit" name="spirit" {% if toon is defined %} value="{{ toon.spirit }}" {% else %} value="100" {% endif %}/>
-							</li>
-							<li>
-								<label for="spellpower">Spellpower</label> : 
-								<input type="text" id="spellpower" name="spellpower" {% if toon is defined %} value="{{ toon.spellpower }}" {% else %} value="500" {% endif %}/>
-							</li>
-							<li>
-								<label for="spell_hit">Spell Hit Value (not percent)</label> : 
-								<input type="text" id="spell_hit" name="spell_hit" {% if toon is defined %} value="{{ toon.hit_score }}" {% else %} value="100" {% endif %}/>
-							</li>
-							<li>
-								<label for="spell_crit">Spell Crit Value (not percent)</label> : 
-								<input type="text" id="spell_crit" name="spell_crit" {% if toon is defined %} value="{{ toon.crit_score }}" {% else %} value="100" {% endif %}/>
-							</li>
-							<li>
-								<label for="spell_haste">Spell Haste Value (not percent)</label> : 
-								<input type="text" id="spell_haste" name="spell_haste" {% if toon is defined %} value="{{ toon.haste }}" {% else %} value="0" {% endif %}/>
-							</li>
-							<li>
-								<label for="tinket1">Trinket 1</label> :  
-								<select id="tinket1" name="trinket1">
-									<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
-									<option value="Eye of Magtheridon">Eye of Magtheridon</option>
-									<option value="Scryer's Bloodgem">Scryer's Bloodgem</option>
-									<option value="Quagmirran's eye">Quagmirran's eye</option>
-									<option value="The Restrained Essence of Sapphiron">The Restrained Essence of Sapphiron</option>
-									<option value="Vengeance of the Illidari">Vengeance of the Illidari</option>
-							<!--		<option value="The Lightning Capacitor">The Lightning Capacitor</option> -->
-									<option value="Xiri's Gift">Xiri's Gift</option>
-									<option value="Sextant of the Unstable Currents">Sextant of the Unstable Currents</option>
-									<option value="Ashtongue Talisman of Equilibrium">Ashtongue Talisman of Equilibrium</option>
-									<option value="The Skull of Gul'dan">The Skull of Gul'dan</option>
-									<option value="Shiffar's Nexus-Horn">Shiffar's Nexus-Horn</option>
-								</select>
-							</li>
-							<li>
-								<label for="tinket2">Trinket 2</label> :
-								<select id="tinket2" name="trinket2">
-									<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
-									<option value="Eye of Magtheridon">Eye of Magtheridon</option>
-									<option value="Scryer's Bloodgem">Scryer's Bloodgem</option>
-									<option value="Quagmirran's eye" selected>Quagmirran's eye</option>
-									<option value="The Restrained Essence of Sapphiron">The Restrained Essence of Sapphiron</option>
-									<option value="Vengeance of the Illidari">Vengeance of the Illidari</option>
-							<!--		<option value="The Lightning Capacitor">The Lightning Capacitor</option> -->
-									<option value="Xiri's Gift">Xiri's Gift</option>
-									<option value="Sextant of the Unstable Currents">Sextant of the Unstable Currents</option>
-									<option value="Ashtongue Talisman of Equilibrium">Ashtongue Talisman of Equilibrium</option>
-									<option value="The Skull of Gul'dan">The Skull of Gul'dan</option>
-									<option value="Shiffar's Nexus-Horn">Shiffar's Nexus-Horn</option>
-								</select>
-							</li>
-							<li>
-								<label for="idol">Idol</label> :
-								<select id="idol" name="idol">
-									<option value="Idol of the Raven Goddess">Idol of the Raven Goddess</option>
-									<option value="Idol of the Moongoddess">Idol of the Moongoddess</option>
-									<option value="none">None / Feral / Wrath</option>
-								</select>
-							</li>
-						</ul>
+	<!-- <section> -->
+   	<form action="{{ url_for('simulator.simulate_fight') }}" method="post" class="sim-box"> 
+    	<div class="row gy-5 form-area-1">
+    		<!-- <div class="col-12"> -->
+					<div class="col-xl-6">
+						<div class="p-3 form-panel">
+							<h2 class="form-panel-title">Stuff Values </h2>
+				 			<ul class="stuff-values">
+								<li>
+									<label for="intel">Intellect</label>  
+									<input class="gear-input" type="text" id ="intel" name="intel" {% if toon is defined %} value="{{ toon.intel }}" {% else %} value="100" {% endif %} />
+								</li>
+								<li>
+									<label for="spirit">Spirit</label>
+									<input class="gear-input" type="text" id="spirit" name="spirit" {% if toon is defined %} value="{{ toon.spirit }}" {% else %} value="100" {% endif %}/>
+								</li>
+								<li>
+									<label for="spellpower">Spellpower</label>
+									<input class="gear-input" type="text" id="spellpower" name="spellpower" {% if toon is defined %} value="{{ toon.spellpower }}" {% else %} value="500" {% endif %}/>
+								</li>
+								<li>
+									<label for="spell_hit">Spell Hit Value (not percent)</label>  
+									<input class="gear-input" type="text" id="spell_hit" name="spell_hit" {% if toon is defined %} value="{{ toon.hit_score }}" {% else %} value="100" {% endif %}/>
+								</li>
+								<li>
+									<label for="spell_crit">Spell Crit Value (not percent)</label>  
+									<input class="gear-input" type="text" id="spell_crit" name="spell_crit" {% if toon is defined %} value="{{ toon.crit_score }}" {% else %} value="100" {% endif %}/>
+								</li>
+								<li>
+									<label for="spell_haste">Spell Haste Value (not percent)</label>  
+									<input class="gear-input" type="text" id="spell_haste" name="spell_haste" {% if toon is defined %} value="{{ toon.haste }}" {% else %} value="0" {% endif %}/>
+								</li>
+								<hr class="divider"></hr>
+								<li>
+									<label for="tinket1">Trinket 1</label>   
+									<select id="tinket1" name="trinket1">
+										<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
+										<option value="Eye of Magtheridon">Eye of Magtheridon</option>
+										<option value="Scryer's Bloodgem">Scryer's Bloodgem</option>
+										<option value="Quagmirran's eye">Quagmirran's eye</option>
+										<option value="The Restrained Essence of Sapphiron">The Restrained Essence of Sapphiron</option>
+										<option value="Vengeance of the Illidari">Vengeance of the Illidari</option>
+								<!--		<option value="The Lightning Capacitor">The Lightning Capacitor</option> -->
+										<option value="Xiri's Gift">Xiri's Gift</option>
+										<option value="Sextant of the Unstable Currents">Sextant of the Unstable Currents</option>
+										<option value="Ashtongue Talisman of Equilibrium">Ashtongue Talisman of Equilibrium</option>
+										<option value="The Skull of Gul'dan">The Skull of Gul'dan</option>
+										<option value="Shiffar's Nexus-Horn">Shiffar's Nexus-Horn</option>
+									</select>
+								</li>
+								<li>
+									<label for="tinket2">Trinket 2</label> 
+									<select id="tinket2" name="trinket2">
+										<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
+										<option value="Eye of Magtheridon">Eye of Magtheridon</option>
+										<option value="Scryer's Bloodgem">Scryer's Bloodgem</option>
+										<option value="Quagmirran's eye" selected>Quagmirran's eye</option>
+										<option value="The Restrained Essence of Sapphiron">The Restrained Essence of Sapphiron</option>
+										<option value="Vengeance of the Illidari">Vengeance of the Illidari</option>
+								<!--		<option value="The Lightning Capacitor">The Lightning Capacitor</option> -->
+										<option value="Xiri's Gift">Xiri's Gift</option>
+										<option value="Sextant of the Unstable Currents">Sextant of the Unstable Currents</option>
+										<option value="Ashtongue Talisman of Equilibrium">Ashtongue Talisman of Equilibrium</option>
+										<option value="The Skull of Gul'dan">The Skull of Gul'dan</option>
+										<option value="Shiffar's Nexus-Horn">Shiffar's Nexus-Horn</option>
+									</select>
+								</li>
+								<li>
+									<label for="idol">Idol</label> 
+									<select id="idol" name="idol">
+										<option value="Idol of the Raven Goddess">Idol of the Raven Goddess</option>
+										<option value="Idol of the Moongoddess">Idol of the Moongoddess</option>
+										<option value="none">None / Feral / Wrath</option>
+									</select>
+								</li>
+							</ul>
 
-						<div>
-							<input type="checkbox" id="is_spellstrike" name="is_spellstrike" value="is_spellstrike" 
-							{% if toon is defined %}
-								{% if toon.is_spellstrike %}checked {% endif %} 
-							{% endif %} >
-							<label for="is_spellstrike">Spellstrike Set Bonus</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_spellfire" name="is_spellfire" value="is_spellfire"
-							{% if toon is defined %}
-								{% if toon.is_spellfire %} checked {% endif %}
-							{% else %} checked 
-							{% endif %} >
-							<label for="is_spellfire">Spellfire Set Bonus</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_csd" name="is_csd" value="is_csd" 
-							{% if toon is defined %}
-								{% if toon.is_csd %}checked {% endif %}
-							{% else %} checked 
-							{% endif %} >
-							<label for="is_csd">Chaotic Skyfire Diamond (Meta Gem)</label>
-						</div>
-		 			</div>
-		 		</div>
-		 
-		 
-				<div class="col-sm">
-					<div class="p-3 border bg-light">
-						<h3> Talents </h3>
-						<legend>Please select your talents (unchecking anything is a major failure) :</legend>
-						<div>
-							<input type="checkbox" id="balance_of_power" name="balance_of_power" value="balance_of_power"
-							{% if toon is defined %}
-								{% if toon.balance_of_power %}checked {% endif %}
+							<div>
+								<input type="checkbox" id="is_spellstrike" name="is_spellstrike" value="is_spellstrike" 
+								{% if toon is defined %}
+									{% if toon.is_spellstrike %}checked {% endif %} 
+								{% endif %} >
+								<label for="is_spellstrike">Spellstrike Set Bonus</label>
+							</div>
+							<div>
+								<input type="checkbox" id="is_spellfire" name="is_spellfire" value="is_spellfire"
+								{% if toon is defined %}
+									{% if toon.is_spellfire %} checked {% endif %}
 								{% else %} checked 
-							{% endif %} >
-							<label for="balance_of_power">Balance of Power</label>
-						</div>
-						<div>
-							<input type="checkbox" id="focused_starlight" name="focused_starlight" value="focused_starlight" 
-							{% if toon is defined %}
-								{% if toon.focused_starlight %}checked {% endif %}
+								{% endif %} >
+								<label for="is_spellfire">Spellfire Set Bonus</label>
+							</div>
+							<div>
+								<input type="checkbox" id="is_csd" name="is_csd" value="is_csd" 
+								{% if toon is defined %}
+									{% if toon.is_csd %}checked {% endif %}
 								{% else %} checked 
-							{% endif %} >
-							<label for="focused_starlight">Focused Starlight</label>
-						</div>
-						<div>
-							<input type="checkbox" id="moonkin_form" name="moonkin_form" value="moonkin_form" 
-							{% if toon is defined %}
-								{% if toon.moonkin_form %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="moonkin_form">Moonkin Form</label>
-						</div>
-						<div>
-							<input type="checkbox" id="improved_mf" name="improved_mf" value="improved_mf" 
-							{% if toon is defined %}
-								{% if toon.improved_mf %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="improved_mf">Improved Moonfire</label>
-						</div>
-						<div>
-							<input type="checkbox" id="starlight_wrath" name="starlight_wrath" value="starlight_wrath" 
-							{% if toon is defined %}
-								{% if toon.starlight_wrath %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="starlight_wrath">Starlight Wrath</label>
-						</div>
-						<div>
-							<input type="checkbox" id="vengeance" name="vengeance" value="vengeance"
-							{% if toon is defined %}
-								{% if toon.vengeance %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="vengeance">Vengeance</label>
-						</div>
-						<div>
-							<input type="checkbox" id="lunar_guidance" name="lunar_guidance" value="lunar_guidance"
-							{% if toon is defined %}
-								{% if toon.lunar_guidance %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="lunar_guidance">Lunar Guidance</label>
-						</div>
-						<div>
-							<input type="checkbox" id="moonfury" name="moonfury" value="moonfury"
-							{% if toon is defined %}
-								{% if toon.moonfury == 1.1 %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="moonfury">Moonfury</label>
-						</div>	
-						<div>
-							<input type="checkbox" id="wrath_of_cenarius" name="wrath_of_cenarius" value="wrath_of_cenarius"
-							{% if toon is defined %}
-								{% if toon.wrath_of_cenarius == 1.2 %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="wrath_of_cenarius">Wrath of Cenarius</label>
+								{% endif %} >
+								<label for="is_csd">Chaotic Skyfire Diamond (Meta Gem)</label>
+							</div>
+			 			</div>
+			 		</div>
+			 
+			 
+					<div class="col-xl-6">
+						<div class="p-3 form-panel">
+							<h2 class="form-panel-title">Talents</h2>
+							<legend>Please select your talents (unchecking anything is a major failure) :</legend>
+							<div>
+								<input type="checkbox" id="balance_of_power" name="balance_of_power" value="balance_of_power"
+								{% if toon is defined %}
+									{% if toon.balance_of_power %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="balance_of_power">Balance of Power</label>
+							</div>
+							<div>
+								<input type="checkbox" id="focused_starlight" name="focused_starlight" value="focused_starlight" 
+								{% if toon is defined %}
+									{% if toon.focused_starlight %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="focused_starlight">Focused Starlight</label>
+							</div>
+							<div>
+								<input type="checkbox" id="moonkin_form" name="moonkin_form" value="moonkin_form" 
+								{% if toon is defined %}
+									{% if toon.moonkin_form %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="moonkin_form">Moonkin Form</label>
+							</div>
+							<div>
+								<input type="checkbox" id="improved_mf" name="improved_mf" value="improved_mf" 
+								{% if toon is defined %}
+									{% if toon.improved_mf %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="improved_mf">Improved Moonfire</label>
+							</div>
+							<div>
+								<input type="checkbox" id="starlight_wrath" name="starlight_wrath" value="starlight_wrath" 
+								{% if toon is defined %}
+									{% if toon.starlight_wrath %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="starlight_wrath">Starlight Wrath</label>
+							</div>
+							<div>
+								<input type="checkbox" id="vengeance" name="vengeance" value="vengeance"
+								{% if toon is defined %}
+									{% if toon.vengeance %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="vengeance">Vengeance</label>
+							</div>
+							<div>
+								<input type="checkbox" id="lunar_guidance" name="lunar_guidance" value="lunar_guidance"
+								{% if toon is defined %}
+									{% if toon.lunar_guidance %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="lunar_guidance">Lunar Guidance</label>
+							</div>
+							<div>
+								<input type="checkbox" id="moonfury" name="moonfury" value="moonfury"
+								{% if toon is defined %}
+									{% if toon.moonfury == 1.1 %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="moonfury">Moonfury</label>
+							</div>	
+							<div>
+								<input type="checkbox" id="wrath_of_cenarius" name="wrath_of_cenarius" value="wrath_of_cenarius"
+								{% if toon is defined %}
+									{% if toon.wrath_of_cenarius == 1.2 %}checked {% endif %}
+									{% else %} checked 
+								{% endif %} >
+								<label for="wrath_of_cenarius">Wrath of Cenarius</label>
+							</div>
 						</div>
 					</div>
-				</div>
+				<!-- </div> -->
 			</div>
 			<br/>
-			<div class="row gy-5">		
-				<div class="col">
-					<div class="p-3 border bg-light">
-						<h3> Buffs (1/2)</h3>
+			<div class="row gy-5 form-area-2">		
+				<div class="col-lg">
+					<div class="p-3 form-panel">
+						<h2 class="form-panel-title">Buffs (1/2)</h2>
 						<div>
 							<input type="checkbox" id="is_motw" name="is_motw" value="is_motw" 
 							{% if buffs is defined %}
@@ -256,16 +256,12 @@
 							<label for="is_curse_of_elements">Curse of Elements</label>
 						</div>
 						<div>
-							<ul>
-								<li>
-									<input type="checkbox" id="is_improved_coe" name="is_improved_coe" value="is_improved_coe"
-									{% if buffs is defined %}
-										{% if buffs.curse_of_elements == 1.13 %}checked {% endif %}
-										{% else %} checked 
-									{% endif %} >
-									<label for="is_improved_coe">Improved Curse of Elements</label>
-								</li>
-							</ul>
+							<input type="checkbox" id="is_improved_coe" name="is_improved_coe" value="is_improved_coe"
+							{% if buffs is defined %}
+								{% if buffs.curse_of_elements == 1.13 %}checked {% endif %}
+								{% else %} checked 
+							{% endif %} >
+							<label for="is_improved_coe">Improved Curse of Elements</label>
 						</div>		
 						<div>
 							<input type="checkbox" id="is_blessing_kings" name="is_blessing_kings" value="is_blessing_kings"
@@ -301,9 +297,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="col">
-					<div class="p-3 border bg-light">
-						<h3> Buffs (2/2)</h3>			
+				<div class="col-lg">
+					<div class="p-3 form-panel">
+						<h2 class="form-panel-title">Buffs (2/2)</h2>			
 						<div>
 							<input type="checkbox" id="is_food" name="is_food" value="is_food"
 							{% if buffs is defined %}
@@ -391,41 +387,42 @@
 				</div>
 			</div>
 			<br/>
-			<div class="row gy-5">
-				<div class="col">
-					<div class="p-3 border bg-light">
-						<h3>Encounter simulation</h3>
-						<ul>
-							<li>Fight Duration (in seconds) :  
-								<select class="form-select" id="fight_duration" name="fight_duration">
-									<option value="60">1 Minute</option>
-									<option value="90">1 Minute 30 seconds</option>
-									<option value="120">2 Minutes</option>
-									<option value="150">2 Minutes 30 seconds</option>
-									<option value="180">3 Minutes</option>
-									<option value="210">3 Minutes 30 seconds</option>
-									<option value="240">4 Minutes</option>
-									<option value="270">4 Minutes 30 seconds</option>
-									<option value="300">5 Minutes</option>
-									<option value="330">5 Minutes 30 seconds</option>
-									<option value="360">6 Minutes</option>
-								</select>
-							</li>
-							<li>
-								<label>Number of loops (less than 100k)</label> : 
-								{% if nb_loops is defined %}
-									<input type="text" name="loop_count" value="{{nb_loops}}" />
-									{% else %} 
-									<input type="text" name="loop_count" value="10" />
-								{% endif %} 
-							</li>
-						</ul>
-						<input type="submit" value="Simulate !" />
+			<div class="row gy-5 sidebar">
+				<div class="col-lg">
+					<div class="p-3 bg-dark form-panel sidebar-panel">
+						<div class="sidebar-content">
+							<h2 class="form-panel-title">Encounter simulation</h2>
+							<ul class="sidebar-menu">
+								<li class="sidebar-menu-item">
+									<label for="fight_duration">Fight Duration (in seconds)</label>  
+									<select class="form-select" id="fight_duration" name="fight_duration">
+										<option value="60">1 Minute</option>
+										<option value="90">1 Minute 30 seconds</option>
+										<option value="120">2 Minutes</option>
+										<option value="150">2 Minutes 30 seconds</option>
+										<option value="180">3 Minutes</option>
+										<option value="210">3 Minutes 30 seconds</option>
+										<option value="240">4 Minutes</option>
+										<option value="270">4 Minutes 30 seconds</option>
+										<option value="300">5 Minutes</option>
+										<option value="330">5 Minutes 30 seconds</option>
+										<option value="360">6 Minutes</option>
+									</select>
+								</li>
+								<li class="sidebar-menu-item">
+									<label>Number of loops (less than 100k)</label>  
+									{% if nb_loops is defined %}
+										<input type="text" name="loop_count" value="{{nb_loops}}" />
+										{% else %} 
+										<input type="text" name="loop_count" value="10" />
+									{% endif %} 
+								</li>
+							</ul>
+							<input type="submit" class="submit-btn" value="Simulate !" />
+						</div>
 					</div>
-				</div>
-				<div class="col">
-					<br/><div></div>	
+				</div>	
 			</div>
 		</form>
-	</section>
+	<!-- </section> -->
 {% endblock %}
