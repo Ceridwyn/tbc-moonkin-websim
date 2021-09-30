@@ -1,0 +1,97 @@
+body {
+	background-color: #212529;
+	color: white;
+	font-family: "Montserrat";
+	/*only when sidebar is on
+	margin-left: 13vw;*/
+}
+h1,h2,h3{
+	font-weight: 600;
+	font-size: calc(1.5vw + 0.5rem);
+}
+header{
+	/*
+	only activate for sidebar:
+	width: 87vw;
+	border-bottom: 1px solid white;
+	*/
+	width: 100vw;
+	text-align: center;
+	box-shadow: 0px 3px 7px #171819;
+	
+}
+ul{
+	list-style: none;
+	padding: 0;
+}
+li{
+	display: flex;
+	justify-content: space-between;
+}
+input[type="text"], select{
+	background: none;
+	border-style: solid;
+	border-width: 0px 0px 2px 0px;
+	border-color: white;
+	color: white;
+	text-align: right;
+}
+select:focus {
+  background-color: #25292d;
+  color: white;
+  border-style: none;
+  outline: none;
+}
+select option:hover{
+	background-color: var(--gray);
+}
+legend{
+	margin-bottom: 35px;
+}
+.divider{
+	border-width: 2px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.stuff-values li{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.gear-input{
+	width: 75px;
+}
+.head-text{
+	padding: 25px;
+	margin-bottom: 50px;
+}
+.sim-box{
+	padding: 20px;
+	margin-left: 3vw;
+}
+.form-panel{
+	height: 100%;
+	border-radius: 15px;
+	/*box-shadow: 5px 5px 7px #171819;*/
+	border: 2px solid #656565;
+}
+.form-panel-title{
+	margin-bottom: 25px;
+	text-align: center;
+}
+/*Sidebar styling*/
+/*.sidebar{
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: 18vw;
+}
+.sidebar-panel{
+	border-radius: 0px;
+	height: 100vh;
+	border-style: none;
+	box-shadow: 5px 5px 7px #171819;
+}
+.sidebar-menu-item{
+	flex-direction: column;
+}*/
