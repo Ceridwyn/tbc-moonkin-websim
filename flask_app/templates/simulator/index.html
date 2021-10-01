@@ -2,14 +2,9 @@
 
 
 {% block content %}
-  {% if dps is defined %}
-	<div>
-	<br/>
-    <h3>Fight simulated, see results below :</h3>
-		<h3>DPS with current configuration : {{ dps|round(4) }} </h3>
-	<br/>
-	</div>
-  {% endif %}
+  <!-- {% if dps is defined %}
+	<h3 class="sim-title bg-primary">Fight simulated.</h3>
+ {% endif %} -->
 	<!-- <section> -->
    	<form action="{{ url_for('simulator.simulate_fight') }}" method="post" class="sim-box"> 
     	<div class="row gy-5 form-area-1">
@@ -420,6 +415,15 @@
 							</ul>
 							<input type="submit" class="submit-btn" value="Simulate !" />
 						</div>
+						<hr class="divider"></hr>
+						{% if dps is defined %}
+						<div class="sim-text">
+						<br/>
+					    <!-- <p>Fight simulated</p> -->
+							<p>DPS with current configuration : {{ dps|round(4) }} </p>
+						<br/>
+						</div>
+					  {% endif %}
 					</div>
 				</div>	
 			</div>
