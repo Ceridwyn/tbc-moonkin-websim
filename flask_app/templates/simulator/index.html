@@ -53,6 +53,7 @@
 										<option value="Ashtongue Talisman of Equilibrium">Ashtongue Talisman of Equilibrium</option>
 										<option value="The Skull of Gul'dan">The Skull of Gul'dan</option>
 										<option value="Shiffar's Nexus-Horn">Shiffar's Nexus-Horn</option>
+										<option value="No Trinket">No trinket</option>
 									</select>
 								</li>
 								<li>
@@ -70,6 +71,7 @@
 										<option value="Ashtongue Talisman of Equilibrium">Ashtongue Talisman of Equilibrium</option>
 										<option value="The Skull of Gul'dan">The Skull of Gul'dan</option>
 										<option value="Shiffar's Nexus-Horn">Shiffar's Nexus-Horn</option>
+										<option value="No Trinket">No trinket</option>
 									</select>
 								</li>
 								<li>
@@ -350,7 +352,7 @@
 						<div>
 							<input type="checkbox" id="is_misery" name="is_misery" value="is_misery"
 							{% if buffs is defined %}
-								{% if buffs.is_misery %}checked {% endif %}
+								{% if buffs.misery == 1.05 %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
 							<label for="is_misery">Misery debuff (SP in raid)</label>
@@ -417,7 +419,7 @@
 						</div>
 						<hr class="divider"></hr>
 						{% if dps is defined %}
-						<div class="sim-text" id="sim-text" autofocus>
+						<div class="sim-text">
 						<br/>
 					    <!-- <p>Fight simulated</p> -->
 							<p>DPS with current configuration : {{ dps|round(4) }} </p>
