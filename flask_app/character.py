@@ -55,12 +55,7 @@ class Character:
         self.is_trinket_activable = False
         self.identify_trinket(trinket1)
         self.identify_trinket(trinket2)	
-        self.apply_idol_bonus()
-    
-    
-    def apply_idol_bonus(self):
-        if self.idol == "Idol of the Raven Goddess":
-            self.crit_score = self.crit_score + 20
+           
     
     def identify_trinket(self, trinket):
         if trinket == "Icon of the Silver Crescent":
