@@ -36,7 +36,7 @@ def simulate_fight():
         idol = request.form['idol'],
         is_csd = 'is_csd' in request.form,
         is_spellstrike = 'is_spellstrike' in request.form,
-        is_spellfire = 'is_spellstrike' in request.form)
+        is_spellfire = 'is_spellfire' in request.form)
         toon.set_talents(
         balance_of_power = "balance_of_power" in request.form,
         focused_starlight = "focused_starlight" in request.form,

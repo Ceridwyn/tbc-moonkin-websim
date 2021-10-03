@@ -1,6 +1,7 @@
 import numpy
 from . import buffs_list
 from . import character
+
 class Encounter:
     def __init__(
     self,
@@ -31,6 +32,8 @@ class Encounter:
         haste = self.char.haste + buff_dict.get("haste")
         spirit = self.char.spirit + buff_dict.get("spirit")
         is_idol_of_moongoddess = True if self.char.idol == "Idol of the Moongoddess" else False
+        if self.char.idol == "Idol of the Raven Goddess":
+            crit_score = crit_score + 20
         # Apply kings after all :
         if self.buffs.is_blessing_kings:
             intel = intel * 1.1
