@@ -193,7 +193,7 @@
 			</div>
 			<br/>
 			<div class="row gy-5 form-area-2">		
-				<div class="col-lg">
+				<div class="col-sm col-lg">
 					<div class="p-3 form-panel">
 						<h2 class="form-panel-title">Buffs (1/2)</h2>
 						<div>
@@ -294,7 +294,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg">
+				<div class="col-sm col-lg">
 					<div class="p-3 form-panel">
 						<h2 class="form-panel-title">Buffs (2/2)</h2>			
 						<div>
@@ -385,14 +385,14 @@
 			</div>
 			<br/>
 			<div class="row gy-5 sidebar">
-				<div class="col-lg">
-					<div class="p-3 bg-dark form-panel sidebar-panel">
+				<div class="col-sm col-lg">
+					<div class="p-3 form-panel sidebar-panel">
 						<div class="sidebar-content">
 							<h2 class="form-panel-title">Encounter simulation</h2>
 							<ul class="sidebar-menu">
 								<li class="sidebar-menu-item">
 									<label for="fight_duration">Fight Duration (in seconds)</label>  
-									<select class="form-select" id="fight_duration" name="fight_duration">
+									<select class="" id="fight_duration" name="fight_duration">
 										<option value="60">1 Minute</option>
 										<option value="90">1 Minute 30 seconds</option>
 										<option value="120">2 Minutes</option>
@@ -417,16 +417,24 @@
 							</ul>
 							<input type="submit" class="submit-btn" value="Simulate !" />
 						</div>
-						<hr class="divider"></hr>
+						
 						{% if dps is defined %}
-						<div class="sim-text">
+						<hr class="divider"></hr>
+						<div class="sim-text" id="sim-text">
 						<br/>
 					    <!-- <p>Fight simulated</p> -->
 							<p>DPS with current configuration : {{ dps|round(4) }} </p>
 						<br/>
 						</div>
 					  {% endif %}
+					  <div class="sidebar-footer sidebar-footer-no-sim" id="sidebar-footer">
+							<a href="https://discord.gg/9y8ethbkUQ">
+				        <img class="server-icon" src="/static/img/moonkinIcon.jpg" alt="Discord Server Icon"></img> 
+				        <p>Join the Discord!</p>
+				      </a>
+						</div>
 					</div>
+					
 				</div>	
 			</div>
 		</form>
