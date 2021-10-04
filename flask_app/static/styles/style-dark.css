@@ -11,13 +11,35 @@ h1,h2,h3{
 	font-size: calc(1.8rem);
 }
 header{
-	width: 87vw;
+	width: 100%;
 	border-bottom: 1px solid white;
 	/*width: 100vw;*/
 	text-align: center;
 	box-shadow: 0px 3px 7px #171819;
-	
+	background-image: url('/static/img/arcane-purple.jpg');
+	background-position: top;
 }
+/*text within the header*/
+.head-text{
+	padding: 25px;
+	text-shadow: 1px 1px 1px black;
+}
+
+
+/*taking away the underline and blue color on links*/
+a{
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	color: white;
+}
+a > p:hover{
+	color: white;
+	font-weight: 600;
+}
+
+/*removing bullets from the list items*/
 ul{
 	list-style: none;
 	padding: 0;
@@ -26,18 +48,15 @@ li{
 	display: flex;
 	justify-content: space-between;
 }
+
+/*making the select dropdowns prettier*/
 input[type="text"], select{
 	background: none;
-	border-style: solid;
+	border-style: inset;
 	border-width: 0px 0px 2px 0px;
 	border-color: white;
 	color: white;
 	text-align: right;
-}
-input[type="checkbox"]:hover{
-	border-width: 2px;
-	border-style: inset;
-	border-color: #0075ff;
 }
 select:focus {
   background-color: #25292d;
@@ -52,9 +71,13 @@ select:hover, input[type="text"]:hover{
 	border-width: 0px 0px 4px 0px;
 	border-style: inset;
 }
+
+/*adding some more breathing room in the talents box*/
 legend{
 	margin-bottom: 35px;
 }
+
+/*box containing the sim numbers*/
 .sim-text{
 	text-align: center;
 	font-weight: 600;
@@ -78,11 +101,15 @@ legend{
 	margin-bottom: 25px;
 	border-radius: 15px;
 }
+
+/*styling the <hr>'s*/
 .divider{
 	border-width: 2px;
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
+
+/*value box styling*/
 .stuff-values li{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -90,13 +117,13 @@ legend{
 .gear-input{
 	width: 75px;
 }
-.head-text{
-	padding: 25px;
-}
+
 .sim-box{
 	padding: 20px;
 	margin-left: 3vw;
 }
+
+/*general form styling for each box*/
 .form-panel{
 	height: 100%;
 	border-radius: 15px;
@@ -107,6 +134,8 @@ legend{
 	margin-bottom: 25px;
 	text-align: center;
 }
+
+
 /*Sidebar styling*/
 .sidebar{
 	position: fixed;
@@ -117,17 +146,19 @@ legend{
 	text-align: center;
 }
 .sidebar-panel{
+	background-color: #343a40;
 	border-radius: 0px;
 	height: 100vh;
 	border-style: none;
 	box-shadow: 5px 5px 7px #171819;
 	margin-top: 0;
-	/*overflow:  hidden;*/
 }
 .sidebar-menu-item{
 	flex-direction: column;
 	margin-bottom: 50px;
 }
+
+/*styling for simulate button*/
 .submit-btn{
 	color: white;
 	text-align: center;
@@ -141,17 +172,80 @@ legend{
 	background-color: white;
 	color: black;
 }
+
+
+/*sidebar footer*/
+.sidebar-footer-no-sim{
+	position: relative;
+	bottom: -31%;
+}
+.sidebar-footer{
+	margin-top: 20px;
+}
+
+/*styling for everything in the footer*/
+footer{
+	text-align: center;
+	padding: 25px;
+	width: 100%;
+	/*position: absolute;*/
+	bottom: 0px;
+	z-index: 100;
+	height: 100%;
+	background-color: #212529;
+	border: 2px solid white;
+	border-width: 2px 0 0 0;
+}
+.foot-txt{
+	margin-top: 10px;
+	font-size: 0.8rem;
+}
+
+/*the discord icons in the footer*/
+.disc-icon{
+	color: #0075ff;
+	font-size: 1.8rem;
+}
+
+/*box with our names in it*/
+.credits{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/*each name*/
+.credit{
+	font-size: 1.2vw;
+}
+
+/*the moonkin image*/
+.server-icon{
+	width: 100px;
+	height: auto;
+	border-radius: 50%;
+	box-shadow: 0px 5px 7px #212529;
+}
+.server-icon:hover{
+	border: 5px solid #0075ff
+
+}
+
+/*when stuff and talents break to be on top of eachother*/
 @media(max-width: 1185px){
 	.form-area-1{
 		flex-direction: column;
 		gap: 20px;
 	}
 }
+
+/*minimum size for titles*/
 @media(max-width: 1150px){
 	h1,h2,h3{
 		font-size: 1.3rem;
 	}
 }
+
+/*minimum size of sidebar and sidebar text*/
 @media(max-width: 980px){
 	.sidebar-menu-item{
 		font-size: 0.8rem;
@@ -166,7 +260,9 @@ legend{
 		width: 195px;
 	}
 }
-@media(max-width: 775px){
+
+/*this is where the sidebar disappears*/
+@media(max-width: 900px){
 	.sim-text{
 		width: 100%;
 	}
@@ -174,10 +270,11 @@ legend{
 		position: static;
 		left: 0;
 		top: 0;
-		height: 200px;
+		height: 400px;
 		width: 100%;
 		margin: 0px;
 		padding: 0;
+		
 	}
 	.sidebar-panel{
 		border-radius: 15px;
@@ -185,7 +282,7 @@ legend{
 		border-style: none;
 		box-shadow: 5px 5px 7px #171819;
 		width: 100%;
-		/*overflow:  hidden;*/
+		
 	}
 	.sidebar-menu-item{
 		margin-bottom: 10px;
@@ -203,12 +300,30 @@ legend{
 	header{
 		width: 100%;
 	}
+	footer{
+		margin-top: 150px;
+	}
+	.version{
+	text-align: left;
+	}
+	.updated{
+		text-align: right;
+	}
+	.server-icon{
+		box-shadow: 0px 5px 7px #171819;
+	}
 }
+
 @media(max-width: 650px){
 	body{
 		font-size: 0.8rem;
 	}
+	.credit{
+		font-size: 0.7rem;
+	}
 }
+
+/*on mobile, list items are stacked vertically*/
 @media(max-width: 550px){
 	li{
 		flex-direction: column;
