@@ -145,6 +145,10 @@ legend{
 	width: 18vw;
 	text-align: center;
 }
+.fight-duration{
+	font-size: 0.8rem;
+	margin-top: 10px;
+}
 .sidebar-panel{
 	background-color: #343a40;
 	border-radius: 0px;
