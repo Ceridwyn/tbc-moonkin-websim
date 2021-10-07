@@ -39,8 +39,9 @@
 								</li>
 								<hr class="divider"></hr>
 								<li>
-									<label for="tinket1">Trinket 1</label>   
+									<label for="tinket1">Trinket 1</label> 
 									<select id="tinket1" name="trinket1">
+										<option class="d-none" value="{{trink1}}"></option>
 										<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
 										<option value="Eye of Magtheridon">Eye of Magtheridon</option>
 										<option value="Scryer's Bloodgem">Scryer's Bloodgem</option>
@@ -57,8 +58,9 @@
 									</select>
 								</li>
 								<li>
-									<label for="tinket2">Trinket 2</label> 
+									<label for="tinket2">Trinket 2</label>
 									<select id="tinket2" name="trinket2">
+										<option class="d-none" value="{{trink2}}"></option>
 										<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
 										<option value="Eye of Magtheridon">Eye of Magtheridon</option>
 										<option value="Scryer's Bloodgem">Scryer's Bloodgem</option>
@@ -77,6 +79,7 @@
 								<li>
 									<label for="idol">Idol</label> 
 									<select id="idol" name="idol">
+										<option class="d-none" value="{{reqIdol}}"></option>
 										<option value="Idol of the Raven Goddess">Idol of the Raven Goddess</option>
 										<option value="Idol of the Moongoddess">Idol of the Moongoddess</option>
 										<option value="none">None / Feral / Wrath</option>
@@ -391,20 +394,38 @@
 							<h2 class="form-panel-title">Encounter simulation</h2>
 							<ul class="sidebar-menu">
 								<li class="sidebar-menu-item">
-									<label for="fight_duration">Fight Duration (in seconds)</label>  
-									<select class="fight-duration" id="fight_duration" name="fight_duration">
+									<label for="fight_duration">Fight Duration (in seconds)</label> 
+									{% if nb_length is defined %} 
+									<select class="fight-duration" id="fight_duration" name="fight_duration" value="{{nb_length}}">
+										<option class="d-none" value="{{nb_length}}"></option>
 										<option value="60">1 Minute</option>
 										<option value="90">1 Minute 30 sec</option>
 										<option value="120">2 Minutes</option>
 										<option value="150">2 Minutes 30 sec</option>
 										<option value="180">3 Minutes</option>
-										<option value="210" selected>3 Minutes 30 sec</option>
+										<option value="210">3 Minutes 30 sec</option>
 										<option value="240">4 Minutes</option>
 										<option value="270">4 Minutes 30 sec</option>
 										<option value="300">5 Minutes</option>
 										<option value="330">5 Minutes 30 sec</option>
 										<option value="360">6 Minutes</option>
 									</select>
+									{% else %}
+									<select class="fight-duration" id="fight_duration" name="fight_duration">
+										<option value="60">1 Minute</option>
+										<option value="90">1 Minute 30 sec</option>
+										<option value="120">2 Minutes</option>
+										<option value="150">2 Minutes 30 sec</option>
+										<option value="180">3 Minutes</option>
+										<option value="210">3 Minutes 30 sec</option>
+										<option value="240">4 Minutes</option>
+										<option value="270">4 Minutes 30 sec</option>
+										<option value="300">5 Minutes</option>
+										<option value="330">5 Minutes 30 sec</option>
+										<option value="360">6 Minutes</option>
+									</select>
+									{% endif %}
+										
 								</li>
 								<li class="sidebar-menu-item">
 									<label>Number of loops (less than 100k)</label>  
@@ -415,9 +436,8 @@
 									{% endif %} 
 								</li>
 							</ul>
-							<input type="submit" class="submit-btn" value="Simulate !" />
+							<input type="submit" class="submit-btn" id="submitBtn" value="Simulate !" />
 						</div>
-						
 						{% if dps is defined %}
 						<hr class="divider"></hr>
 						<div class="sim-text" id="sim-text">
@@ -427,6 +447,12 @@
 						<br/>
 						</div>
 					  {% endif %}
+					  <div class="loadingSpinner d-none" id="spinner">
+							<div class="spinner-border text-primary" role="status" >
+	  						<span class="visually-hidden">Loading...</span>
+							</div>
+							<p>Simulating DPS (this might take a moment)</p>
+						</div>
 					  <div class="sidebar-footer sidebar-footer-no-sim" id="sidebar-footer">
 							<a href="https://discord.gg/9y8ethbkUQ">
 				        <img class="server-icon" src="/static/img/moonkinIcon.jpg" alt="Discord Server Icon"></img> 
