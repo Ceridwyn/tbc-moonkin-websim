@@ -86,6 +86,7 @@ legend{
 	border-radius: 15px;
 	background-color: #212529;
 	margin-top: 20px;
+	height: 175px;
 }
 .sim-divider{
 	margin-top: 10px;
@@ -234,6 +235,13 @@ footer{
 
 }
 
+/*loading spinner*/
+.loadingSpinner{
+	margin-top: 24px;
+	height: 175px;
+	/*height: 184px;*/
+}
+
 /*when stuff and talents break to be on top of eachother*/
 @media(max-width: 1185px){
 	.form-area-1{
@@ -269,6 +277,7 @@ footer{
 @media(max-width: 900px){
 	.sim-text{
 		width: 100%;
+		height: 90px;
 	}
 	.sidebar{
 		position: static;
@@ -316,6 +325,10 @@ footer{
 	.server-icon{
 		box-shadow: 0px 5px 7px #171819;
 	}
+	.loadingSpinner{
+		height: 90px;
+	}
+
 }
 
 @media(max-width: 650px){

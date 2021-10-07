@@ -89,7 +89,12 @@ def simulate_fight():
             toon = toon, 
             buffs = buffs,
             nb_loops = int(request.form['loop_count']),
+            nb_length = int(request.form['fight_duration']),
+            trink1 = request.form['trinket1'],
+            trink2 = request.form['trinket2'],
+            reqIdol = request.form['idol'],
             fight_duration = int(request.form['fight_duration']))
+            
     return render_template('simulator/simulated.html')
 
 #def get_simulation_result(id, check_author=True):
