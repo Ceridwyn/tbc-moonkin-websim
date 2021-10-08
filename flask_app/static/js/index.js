@@ -3,6 +3,7 @@ var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth |
 var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 var sideFoot = document.getElementById('sidebar-footer');
 var mainFoot = document.getElementById('footer');
+var simBox = document.getElementById('sim-text');
 var credits = document.getElementsByClassName('recog');
 var discordFooter = document.getElementById('foot-disc');
 var fightDuration = document.getElementById('fight_duration');
@@ -36,8 +37,10 @@ function switchVis(){
 //on page load
 window.addEventListener('load', (event) => {
     //preserving user choice for fight duration
-    if(fightDuration.value){
-        fightDuration.options[(fightDuration.value - 30) / 30].selected = true;
+    if(simBox){
+        //takes the preserved value and divides it by 30, then subtracts by 1 to account for indexing
+        fightDuration.options[((+fightDuration.value) / 30) - 1].selected = true;
+        console.log('selected index: ' + fightDuration.selectedIndex);
     }
 
     //user trinket 1
