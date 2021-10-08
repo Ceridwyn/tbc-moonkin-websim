@@ -88,6 +88,13 @@ legend{
 	margin-top: 20px;
 	height: 175px;
 }
+.loadingSpinner{
+	text-align: center;
+	font-weight: 600;
+	padding: 10px;
+	margin-top: 20px;
+	height: 175px;
+}
 .sim-divider{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -180,12 +187,18 @@ legend{
 
 
 /*sidebar footer*/
-.sidebar-footer-no-sim{
+/*.sidebar-footer-no-sim{
 	position: relative;
 	bottom: -31%;
-}
-.sidebar-footer{
-	margin-top: 20px;
+}*/
+.sidebar-footer, .sidebar-footer-no-sim{
+	/*margin-top: 20px;*/
+	position: absolute;
+  bottom: 0;
+  width: 18vw;
+  padding: 20px;
+  left: 0;
+
 }
 
 /*styling for everything in the footer*/
@@ -238,7 +251,7 @@ footer{
 /*loading spinner*/
 .loadingSpinner{
 	margin-top: 24px;
-	height: 175px;
+	/*height: 175px;*/
 	/*height: 184px;*/
 }
 
@@ -268,7 +281,7 @@ footer{
 	}
 }
 @media(max-width: 1050px){
-	.sidebar{
+	.sidebar, .sidebar-footer, .sidebar-footer-no-sim{
 		width: 195px;
 	}
 }
