@@ -443,7 +443,7 @@
 						<div class="sim-text" id="sim-text">
 						<br/>
 					    <!-- <p>Fight simulated</p> -->
-							<p>DPS with current configuration : {{ dps|round(4) }} </p>
+							<p class="simNumbers">DPS with current configuration : {{ dps|round(4) }} </p>
 						<br/>
 						</div>
 					  {% endif %}
@@ -451,12 +451,12 @@
 							<div class="spinner-border text-primary" role="status" >
 	  						<span class="visually-hidden">Loading...</span>
 							</div>
-							<p>Simulating DPS (this might take a moment)</p>
+							<p class="loadingText">Simulating DPS (this might take a moment)</p>
 						</div>
 					  <div class="sidebar-footer sidebar-footer-no-sim" id="sidebar-footer">
 							<a href="https://discord.gg/9y8ethbkUQ">
 				        <img class="server-icon" src="/static/img/moonkinIcon.jpg" alt="Discord Server Icon"></img> 
-				        <p>Join the Discord!</p>
+				        <p class="discIconText">Join the Discord!</p>
 				      </a>
 						</div>
 					</div>
