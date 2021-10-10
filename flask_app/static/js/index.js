@@ -14,7 +14,7 @@ var idol = document.getElementById('idol');
 
 //adjusts where the discord link appears ( sidebar --> footer )
 function switchVis(){
-    if(window.innerWidth <= 900){
+    if(window.innerWidth <= 900 || window.innerHeight <= 650){
         if(!sideFoot.classList.contains('d-none')){
             sideFoot.classList.add('d-none');
             console.log('sidebar foot shouldn\'t be visible');
@@ -71,7 +71,7 @@ window.addEventListener('load', (event) => {
     }
 
     //defaults sidebar footer to hidden on mobile
-    if(vw <= 900){
+    if(vw <= 900 || vh <= 650){
         if(sideFoot){
             sideFoot.classList.add('d-none');
         }
