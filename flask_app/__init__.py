@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from .encounter import Encounter
+from .encounter_without_mana import Encounter_without_mana
 from .buffs_list import Buffs_list
 from .character import Character
 

@@ -3,7 +3,7 @@ import numpy
 from . import buffs_list
 from . import character
 
-class Encounter:
+class Encounter_without_mana:
 	def __init__(
 	self,
 	char,
@@ -79,7 +79,6 @@ class Encounter:
 		else:
 			MF_average_dot_damage = 600
 		
-		self.logmana("Spirit after BoK : " + str(spirit))
 		# Apply spell haste coefficients here
 		# 15.77 Spell Haste Rating increases casting speed by 1%
 		# % Spell Haste at level 70 = (Haste Rating / 15.77)
@@ -140,76 +139,26 @@ class Encounter:
 		
 		# New added spells
 		IS_coeff = 0.76
-		IS_mana_cost = 175
+		# IS_mana_cost = 175
 		IS_average_dot_damage = 792
 		
 		wrath_coeff = 0.671
-		wrath_mana_cost = 232
+		# wrath_mana_cost = 232
 		wrath_average_damage = 448.5
 		wrath_cast_time = 1.5
 		wrath_cast_time_ng = 1
-		
-		# Mana regen
-		is_shadow_priest = False
-		shadow_priest_dps = 1500
-		is_mana_tide = False
-		mana_tide_timer = 120 #timer in seconds
-
-		#Paddington - Added mana potions
-		if self.buffs.is_manapot:
-			manapot_cd = 0
-			manapot_up = True
-		else:
-			manapot_cd = 120
-			manapot_up = False
-		#Juff - Adding Runes and innervate
-		if self.buffs.is_rune:
-			rune_cd = 0
-			rune_up = True
-		else:
-			rune_cd = 120
-			rune_up = False
-		if self.buffs.is_innervate:
-			innervate_cd = 0
-			innervate_up = True
-		else:
-			innervate_cd = 360
-			innervate_up = False
-			
-		
-		# Mana mana
-		# Juff - making mana work
-		start_mana = 2370 + intel*15
-		mana = start_mana
-		inn_amt = (((20 *.00932715221261 * math.sqrt(intel) * spirit)*(5-(self.char.intensity/10))))
-		self.logmana("inn_amt:" + str(inn_amt) + " start_mana: " + str(start_mana))
-		
-		#Paddington - Added mana regen
-		#Juff - Fully Fleshed Out mana Regen
-		#Mana Regen
-		dreamstate = self.char.dreamstate * intel
-		spirit_regen = 5 *.00932715221261 * math.sqrt(intel) * spirit * (.1 * self.char.intensity)
-		fsr_spirit = 5 *.00932715221261 * math.sqrt(intel) * spirit
-		casting_mp5 = mp5 + dreamstate + spirit_regen
-		fsr_mp5 = mp5 + dreamstate + fsr_spirit
-		self.logmana("mp5 :" + " dreamstate : " + str(dreamstate) + " spirit_regen: " + str(spirit_regen) + " worn+buff mp/5: " + str(mp5))
-		mp5_tick= 5
-		
-		# Mana costs
-		FF_mana_cost = 145
-		MF_mana_cost = 450
 		
 		partial_coeff = 0.94 # For the moment, let's say that in average, partials get 6% damage reduction
 		
 		#Paddington - Added spell downranking
 		if SF_rank == 6:
-			SF_mana_cost = 287
+		#	SF_mana_cost = 287
 			SF_average_damage = 553.5
 		elif SF_rank == 7:
-			SF_mana_cost = 309
+		#	SF_mana_cost = 309
 			SF_average_damage = 614.5
 		else:
-			SF_mana_cost = 337
+		#	SF_mana_cost = 337
 			SF_average_damage = 658
 		
 		# SF_average_damage = SF_average_damage + 55 if is_idol_of_moongoddess else SF_average_damage
@@ -224,7 +173,6 @@ class Encounter:
 		average_dps = 0
 		n = 0
 		
-		self.logmana("MP5 : " + str(mp5))
 		while n < iteration_nb:
 			n = n + 1
 			# Initialization
@@ -245,17 +193,7 @@ class Encounter:
 			trinket_uptime = 0
 			trinket_cd_timer = 0
 			is_trinket_active = False
-			mana = start_mana
-			manapot_cd = 0
-			rune_cd = 0
-			innervate_cd = 0 
 			
-			pre_loop_mana = start_mana
-			post_loop_mana = start_mana
-			tide_timer = mana_tide_timer
-			tide_tick = 0 
-			ticks_remaining = 4 
-			five_second_rule = 0
 			wrath_fight_value = wrath_crit_percent_value
 			sf_fight_value = SF_crit_percent_value
 			mf_fight_value = MF_crit_percent_value
@@ -312,7 +250,6 @@ class Encounter:
 			is_trinket_activable = self.char.is_trinket_activable
 
 			while fight_time <= self.fight_length:
-				pre_loop_mana = mana
 				if is_lusted:
 					loop_duration = max(1, (1.5 / (1 + (fight_haste / 100))/1.3)) #GCD - can't be less, it's the rule !
 				else:
@@ -344,60 +281,13 @@ class Encounter:
 					lust_amount = lust_amount - 1
 					lust_uptime = 40
 					is_lusted = True
-					#self.logfunc("Lusted! : " + str(is_lusted))
-				
-				if self.buffs.is_manapot and manapot_up and mana < (start_mana-3000):
-					mana = mana + (1800 + 3000)/2
-					manapot_cd = 120
-					manapot_up = False
-					self.logmana("Mana Potion Used!")
-				
-				if self.buffs.is_rune and rune_up and mana < (start_mana - 1500) and not manapot_up:
-					mana = mana + (900+1500)/2
-					rune_cd = 120
-					rune_up = False
-					self.logmana("Rune used!")
-					#logfunc("lust up, lust amount is " + str(lust_amount) + " fight time is " + str(fight_time))
-				#Paddington - Added Dark Iron Smoking Pipe
-				# if self.char.dark_iron_smoking_pipe and is_trinket_activable and is_ff_up:
-				# 	fight_spell_power = fight_spell_power + self.char.spellpower_trinket_bonus
-				# 	on_use_icd_timer = self.char.on_use_icd
-				# 	trinket_cd_timer = self.char.trinket_cd
-				# 	is_trinket_activable = False
-				# 
-				# if self.char.silver_crescent and is_trinket_activable and is_ff_up:
-				# 	fight_spell_power = fight_spell_power + self.char.spellpower_trinket_bonus
-				# 	on_use_icd_timer = self.char.on_use_icd
-				# 	trinket_cd_timer = self.char.trinket_cd
-				# 	is_trinket_activable = False
-				# 	
-				# if self.char.skull and skull_cd <= 0 and is_ff_up:
-				# 	fight_haste = fight_haste + (175/15.77)
-				# 	skull_uptime = 20 
-				# 	skull_cd = 120
-				# 	skull_active = True
-				# 	#logfunc("skull activated!!")
-				# 
-				# #Paddington - Added mana potions
-				# if manapot_up and mana < (start_mana-3000):
-				# 	mana = mana + (1800 + 3000)/2
-				# 	manapot_cd = 120
-				# 	manapot_up = False
-				# 	self.logfunc("Mana Potion Used!")
-				# if rune_up and mana < (start_mana - 1500) and not manapot_up:
-				# 	mana = mana + (900+1500)/2
-				# 	rune_cd = 120
-				# 	rune_up = False
-				# 	self.logfunc("Rune used!")
 					
 				# if FF not up, cast FF
 				#Paddington - Added mana management
 				# self.logfunc("Is FF UP ? : " + str(is_ff_up))
-				if not is_ff_up and mana >= FF_mana_cost:
+				if not is_ff_up:
 					self.logfunc("Casting Faerie Fire !")
 					#Paddington - Added mana management
-					mana = mana - FF_mana_cost
-					self.logmana("Current mana:" + str(mana))
 					if is_lusted:
 						loop_duration = max(1, ((1.5 / (1 + (fight_haste/100)))/1.3)) #GCD
 					else:
@@ -409,9 +299,6 @@ class Encounter:
 						is_hit = True
 						ff_uptime = 40
 						is_ff_up = True
-						if is_hit and self.buffs.is_judgment_of_wisdom and rng.randint(1, high = 3, size = 1) == 1:	  
-							mana = mana + 74
-							self.logmana("jowisdom proc! mana " + str(mana))
 						# Test if spellstrike is proc -> Commented out because tested later on in the code
 						# spellstrike_proc = (rng.randint(1, high = 101, size = 1) <= 10)
 
@@ -440,7 +327,7 @@ class Encounter:
 						trinket_one_active = True
 						self.logfunc("trinket one active! haste " + str(fight_haste))
 				
-					if self.buffs.is_destruction_potion and not self.buffs.is_manapot and manapot_cd <= 0:
+					if self.buffs.is_destruction_potion and manapot_cd <= 0:
 						fight_spell_power = fight_spell_power + 120
 						wrath_fight_value = wrath_fight_value + .02
 						sf_fight_value = sf_fight_value + .02
@@ -468,11 +355,8 @@ class Encounter:
 						self.logfunc("trinket two active! haste " + str(fight_haste))
 					
 					
-					if not is_mf_up and is_MF and mana >= MF_mana_cost:
+					if not is_mf_up and is_MF:
 						self.logfunc("Casting Moonfire !")
-						#Paddington - Added mana management
-						mana = mana - MF_mana_cost
-						self.logmana("Current mana:" + str(mana))
 						if is_lusted:
 							loop_duration = max(1, ((1.5 / (1 + (fight_haste/100)))/1.3)) #GCD
 						else:
@@ -480,10 +364,7 @@ class Encounter:
 						# Is it a hit ?
 						if(rng.random() <= hit_chance_percent_value):
 							is_hit = True
-							MF_hit = True
-							if is_hit and self.buffs.is_judgment_of_wisdom and rng.randint(1, high = 3, size = 1) == 1:	  
-								mana = mana + 74
-								self.logmana("jowisdom proc! mana " + str(mana))									  
+							MF_hit = True								  
 							# Is it a crit ?
 							is_crit = (rng.random() <= MF_crit_percent_value)
 							# Is it a partial ?
@@ -515,10 +396,8 @@ class Encounter:
 							self.logfunc("Moonfire -> Resist ! ")
 							
 					#Paddington - Added insect swarm use
-					elif not is_is_up and is_IS and mana>= IS_mana_cost:
+					elif not is_is_up and is_IS :
 						self.logfunc("Casting Insect Swarm !")
-						mana = mana - IS_mana_cost
-						self.logmana("Current mana:" + str(mana))
 						if is_lusted:
 							loop_duration = max(1, ((1.5 / (1 + (fight_haste/100)))/1.3)) #GCD
 						else:
@@ -527,10 +406,7 @@ class Encounter:
 						if(rng.random() <= hit_chance_percent_value):
 							is_hit = True
 							#Paddington - Added hit check for individual spell dmg totals
-							IS_hit = True
-							if is_hit and self.buffs.is_judgment_of_wisdom and rng.randint(1, high = 3, size = 1) == 1:	  
-								mana = mana + 74
-								self.logmana("jowisdom proc! mana " + str(mana))										   
+							IS_hit = True										   
 							# DoT :
 							damage = damage + ((IS_average_dot_damage + (IS_coeff * fight_spell_power) * min(12, (self.fight_length - fight_time - 1.5))/12) * self.buffs.misery)
 							# There is a Hit ! update model
@@ -540,32 +416,16 @@ class Encounter:
 							is_hit = False
 							self.logfunc("Insect Swarm -> Resist ! ")
 							
-					#Juff - Added Innervate
-					elif innervate_cd <= 0 and not manapot_up and not rune_up and mana < start_mana - inn_amt:
-						innervate_cd = 360
-						mana = mana + inn_amt
-						if mana > start_mana:
-							mana = start_mana
-							self.logmana("Innervate Used ! Time: " +  str(fight_time))
-						if is_lusted:
-							loop_duration = max(1, ((1.5 / (1 + (fight_haste/100)))/1.3)) #GCD
-						else:
-							loop_duration = max(1, (1.5 / (1 + (fight_haste/100)))) #GCD because we cast a spell
-							
 					#Paddington - Added wrath option here   
 					#Paddington - Added mana management		 
-					elif casting_wrath and mana >= wrath_mana_cost:
+					elif casting_wrath :
 						# Cast Wrath
 						self.logfunc("Casting Wrath !")
-						mana = mana - wrath_mana_cost
 						# Is it a hit ?
 						if(rng.randint(1, high = 101, size = 1) <= hit_chance):
 							is_hit = True
 							#Paddington - Added hit check for individual spell dmg totals
 							Wrath_hit = True
-							if self.buffs.is_judgment_of_wisdom and rng.randint(1, high = 3, size = 1) == 1: 
-								mana = mana + 74
-								self.logmana("jowisdom proc!" + str(mana))
 							# Is it a crit ?
 							is_crit = (rng.randint(1, high = 101, size = 1) <= wrath_crit_percent)
 							damage = (wrath_average_damage + (wrath_coeff * fight_spell_power * self.char.wrath_of_cenarius_wrath )) * self.char.moonfury * self.buffs.misery
@@ -591,15 +451,9 @@ class Encounter:
 						is_ng = False # Consume NG once wrath is cast
 
 					#Paddington - Added mana management
-					elif casting_SF and mana >= SF_mana_cost:
+					elif casting_SF :
 						# Cast Starfire
 						self.logfunc("Casting Starfire !")
-						#Paddington - Added mana management
-						mana = mana - SF_mana_cost
-						self.logmana("Current mana:" + str(mana))
-						#sf_cast_time = 3 / (1 + (fight_haste/100))
-						#sf_cast_time_ng = 2.5 / (1 + (fight_haste/100))
-						# Computing loop duration
 						# self.logfunc("Is HEROISM still UP ? : " + str(is_lusted))
 						if is_ng and is_lusted:
 							sf_cast_time_ng = max(1, ((2.5 / (1 + (fight_haste/100)))/1.3))
@@ -623,10 +477,6 @@ class Encounter:
 							is_hit = True
 							#Paddington - Added hit check for individual spell dmg totals
 							SF_hit = True
-							if self.buffs.is_judgment_of_wisdom and rng.randint(1, high = 3, size = 1) == 1: 
-								mana = mana + 74
-								self.logmana("jowisdom proc!" + str(mana))
-							
 							if trinket_one.is_ashtongue() and rng.randint(1, high = 101, size = 1) <= 25 and Ashtongue_Triggered == False:
 								trinket_one_active = True
 								fight_spell_power = fight_spell_power + trinket_one.effect_amount
@@ -659,7 +509,6 @@ class Encounter:
 							is_crit = (rng.random() <= SF_crit_percent_value)
 							if is_crit:
 								self.logfunc("Starfire -> Crit ! ")
-							
 							
 							if spellstrike_proc and (spellstrike_uptime < loop_duration):
 								fight_spell_power = fight_spell_power - spellstrike_bonus 
@@ -704,13 +553,13 @@ class Encounter:
 								trinket_two_active = False
 								#self.logfunc("trinket fades early fight spellpower + " + str(fight_spell_power))
 							
-							if self.buffs.is_destruction_potion and not self.buffs.is_manapot and destro_duration <= loop_duration and destro_active:
-								fight_spell_power = fight_spell_power - 120
-								wrath_fight_value = wrath_fight_value -.02
-								sf_fight_value = sf_fight_value - .02
-								mf_fight_value = mf_fight_value - .02
-								#self.logfunc("destruction fades out early! sp " + str(fight_spell_power) + " wrath crit " + str(wrath_fight_value) + " sf crit " + str(sf_fight_value) + " mf crit " + str(mf_fight_value))
-								destro_active = False
+							#if self.buffs.is_destruction_potion and not self.buffs.is_manapot and destro_duration <= loop_duration and destro_active:
+							#	fight_spell_power = fight_spell_power - 120
+							#	wrath_fight_value = wrath_fight_value -.02
+							#	sf_fight_value = sf_fight_value - .02
+							#	mf_fight_value = mf_fight_value - .02
+							#	#self.logfunc("destruction fades out early! sp " + str(fight_spell_power) + " wrath crit " + str(wrath_fight_value) + " sf crit " + str(sf_fight_value) + " mf crit " + str(mf_fight_value))
+							#	destro_active = False
 								
 
 							# end of trinket verification
@@ -753,7 +602,6 @@ class Encounter:
 						
 				# Apply partials in the end, once and for all
 				damage = damage * partial_coeff
-				
 				# Update time and model
 				fight_time = fight_time + loop_duration
 				self.logfunc("Fight Time until now : " + str(fight_time))
@@ -779,15 +627,7 @@ class Encounter:
 				# ashtongue_uptime = ashtongue_uptime - loop_duration
 				drum_time = drum_time - loop_duration
 				drum_cd = drum_cd - loop_duration 
-				tide_tick = tide_tick - loop_duration
-				#####################
-				#Paddington - Added Mana management
-				#Juffington - More mana management 				
-				manapot_cd = manapot_cd - loop_duration
-				rune_cd = rune_cd - loop_duration
-				mp5_tick = mp5_tick - loop_duration
-				innervate_cd = innervate_cd - loop_duration
-				self.logmana("innervate cd:" + str(innervate_cd))
+				
 				lust_uptime = lust_uptime - loop_duration
 				######################
 				skull_uptime = skull_uptime - loop_duration
@@ -850,7 +690,7 @@ class Encounter:
 					trinket_two_active = False
 					#self.logfunc("trinket two fades. fight haste" + str(fight_haste))
 				
-				if self.buffs.is_destruction_potion and not self.buffs.is_manapot and destro_duration <= 0 and destro_active:
+				if self.buffs.is_destruction_potion and destro_duration <= 0 and destro_active:
 					fight_spell_power = fight_spell_power - 120
 					wrath_fight_value = wrath_fight_value -.02
 					sf_fight_value = sf_fight_value - .02
@@ -860,70 +700,8 @@ class Encounter:
 				
 				if ff_uptime <= 0:
 					is_ff_up = False
-				# Trinket 
-				# if trinket_uptime <= 0:
-				# 	is_trinket_active = False
-				# else:
-				# 	is_trinket_active = True
-				#Paddington - Added check for trinket internal CD if using 2 on-use trinkets
-				# if trinket_cd_timer <= 0 and on_use_icd_timer <= 0:
-				# 	is_trinket_available = True
-				# else:
-				# 	is_trinket_available = False
-				# 
-				# if eye_of_quagg_uptime <= 0 and eye_of_quagg_proc:
-				# 	fight_haste = fight_haste - (320/15.77)
-				# 	eye_of_quagg_proc = False 
-				# 	self.logfunc("eye of quagg fades. fight haste is " + str(fight_haste))
-				# 	
-				# if eye_of_mag_uptime <= 0:
-				# 	is_eye_of_mag_triggered = False
-				# 
-				# if sextant_of_unstable_currents_uptime <= 0:
-				# 	is_sextant_of_unstable_currents_triggered = False
-				# 
-				# if ashtongue_uptime <= 0:
-				# 	is_ashtongue_triggered = False
+			
 					
-				# if self.buffs.is_drums and drum_time <= 0 and drums_up:
-				# 	fight_haste = fight_haste - (80/15.77)
-				# 	drums_up = False
-				# 	#logfunc("drums down!!! fight haste is: " + str(fight_haste))
-					
-				#Paddington - Added mana potion use
-				if manapot_cd <= 0:
-					manapot_up = True
-					self.logmana("Mana Potion Available!")
-				else:
-					self.logmana("Mana Potion Down!")
-				#Juff Adding runes
-				if rune_cd <= 0: 
-					rune_up = True
-					self.logmana("Rune available")
-				else:
-					self.logmana("Rune down!")
-				#Juff Vate too. 
-				if innervate_cd <= 0:
-					innervate_up = True
-					self.logmana("Vate up!")
-				else:
-					self.logmana("VateDown!")
-																												 
-																									
-				#Paddington - Added mana management
-				if mp5_tick <= 0 and five_second_rule >= 5:
-					self.logmana("premp5 mana " + str(mana))
-					mana = mana + fsr_mp5
-					self.logmana("post 5sr mp5 " + str(mana))
-					mp5_tick = 5 + mp5_tick
-					self.logmana("mp5 tick: " + str(mp5_tick) + " mana " + str(mana) + " fight time " + str(fight_time))
-				elif mp5_tick <= 0 and five_second_rule <= 5:
-					self.logmana("premp5 mana " + str(mana))
-					mana = mana + casting_mp5
-					self.logmana("post intensity mana" + str(mana) + " fight time " + str(fight_time))
-					mp5_tick = 5 + mp5_tick
-					#logmana("mp5 tick: " + str(mp5_tick) + " mana " + str(mana) + " fight time " + str(fight_time))
-				
 				if is_lusted and lust_uptime <= 0:
 					is_lusted = False
 					#logfunc("lust down!")
@@ -1009,21 +787,6 @@ class Encounter:
 						trinket_two_duration = trinket_two.duration
 						self.logfunc("Eye of Mag refreshed! Time remaining " + str(trinket_two.duration))
 				
-				post_loop_mana = mana
-				#self.logfunc("post loop mana" + str(post_loop_mana))
-				if post_loop_mana >= pre_loop_mana:
-					five_second_rule = five_second_rule + loop_duration
-					#self.logfunc("fsr: " + str(five_second_rule))
-				else:
-					five_second_rule = 0
-					#self.logfunc("fsr: " + str(five_second_rule))
-					
-				if is_mana_tide and fight_time >= tide_timer and tide_tick <= 0 and ticks_remaining >= 1:
-					mana = mana + (start_mana * .06)
-					tide_tick = 3 + tide_tick
-					ticks_remaining = ticks_remaining - 1 
-					self.logmana("tide ticked! ticks remaining " + str(ticks_remaining) + " tide mana recovered " + str(.06 * start_mana))
-
 				# Print output
 				self.logfunc("Loop Duration : " + str(loop_duration))
 				self.logfunc("Loop Damage : " + str(damage))
