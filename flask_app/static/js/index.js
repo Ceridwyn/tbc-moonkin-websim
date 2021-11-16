@@ -10,7 +10,8 @@ var fightDuration = document.getElementById('fight_duration');
 var trink1 = document.getElementById('tinket1');
 var trink2 = document.getElementById('tinket2');
 var idol = document.getElementById('idol');
-
+var intensity = document.getElementById('intensity');
+var dreamstate = document.getElementById('dreamstate');
 
 //adjusts where the discord link appears ( sidebar --> footer )
 function switchVis(){
@@ -65,6 +66,18 @@ window.addEventListener('load', (event) => {
     }
     console.log(trink1.options);
 
+	// User Intensity points
+	for(let i = 1; i < intensity.options.length; i++){
+        if(intensity.options[i].value === intensity.options[0].value){
+            intensity.selectedIndex = i;
+        }
+    }
+	// User Dreamstate points
+    for(let i = 1; i < dreamstate.options.length; i++){
+        if(dreamstate.options[i].value === dreamstate.options[0].value){
+            dreamstate.selectedIndex = i;
+        }
+    }
     //changes sidebar style to make room for simbox
     if(document.getElementById('sim-text')){
         document.getElementById('sidebar-footer').classList.remove('sidebar-footer-no-sim');
