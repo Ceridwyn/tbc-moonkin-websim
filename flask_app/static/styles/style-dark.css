@@ -357,10 +357,10 @@ footer{
 		flex-direction: row;
 	}
 	.sidebar-menu-item label{
-		width: 115px;
+		width: 150px;
 	}
 	.sidebar-menu-item select, .sidebar-menu-item input{
-		width: 100px;
+		width: 150px;
 	}
 	body{
 		margin-left: 0px;
