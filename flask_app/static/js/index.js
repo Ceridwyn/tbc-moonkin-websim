@@ -13,6 +13,19 @@ var idol = document.getElementById('idol');
 var intensity = document.getElementById('intensity');
 var dreamstate = document.getElementById('dreamstate');
 
+//mana collapse button
+var manaButton = document.getElementById('mana-management-button');
+//mana sim checkbox
+var simManaCheck = document.getElementById('is_mana_simulated');
+//mana form
+var manaPanel = document.getElementById('collapseOne');
+//mana accordion
+var manaSimDropdown = document.getElementById('mana-management');
+//spriest check
+var spriestCheck = document.getElementById('is_shadow_priest');
+//spriest dps box
+var spriestBox = document.getElementById('spriest-dps');
+
 //adjusts where the discord link appears ( sidebar --> footer )
 function switchVis(){
     if(window.innerWidth <= 900 || window.innerHeight <= 650){
@@ -35,8 +48,19 @@ function switchVis(){
     }
 }
 
+//for elements that depend on one another, toggles visibility depending on the parent
+/*function isChecked(item){
+    item.addEventListener('click', function(){
+       item.checked ? manaSimDropdown.classList.remove('d-none') : manaSimDropdown.classList.add('d-none');
+         console.log(manaButton.attributes[4].value); 
+    });
+}*/
+
 //on page load
 window.addEventListener('load', (event) => {
+    console.log(simManaCheck.checked);
+    simManaCheck.checked ? manaSimDropdown.classList.remove('d-none') : manaSimDropdown.classList.add('d-none');
+    spriestCheck.checked ? spriestBox.classList.remove('d-none') : spriestBox.classList.add('d-none');
     //preserving user choice for fight duration
     if(simBox){
         //takes the preserved value and divides it by 30, then subtracts by 1 to account for indexing
@@ -97,6 +121,18 @@ window.addEventListener('load', (event) => {
     if(document.getElementById('sim-text')){
         document.getElementById('sim-text').scrollIntoView();
     }
+
+    //when the mana sim checkbox is ticked, the mana options show up
+    simManaCheck.addEventListener('click', function(){
+       simManaCheck.checked ? manaSimDropdown.classList.remove('d-none') : manaSimDropdown.classList.add('d-none');
+    });
+
+    //when spriest is checked, spriest dps appears
+    spriestCheck.addEventListener('click', function(){
+       spriestCheck.checked ? spriestBox.classList.remove('d-none') : spriestBox.classList.add('d-none');
+    });
+
+
 });
 //adjusts certain elements' visibility at diff viewport sizes on resize
 window.onresize = switchVis;
