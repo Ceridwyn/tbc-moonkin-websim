@@ -44,11 +44,16 @@ ul{
 	list-style: none;
 	padding: 0;
 }
-li{
+li, .form-item{
 	display: flex;
 	justify-content: space-between;
 }
-
+.mana-config{
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 5px;
+}
 /*making the select dropdowns prettier*/
 input[type="text"], select{
 	background: none;
@@ -254,6 +259,17 @@ footer{
 	/*height: 175px;*/
 	/*height: 184px;*/
 }
+
+/*mana management dropdown button*/
+/*THIS IS NOT A GOOD SOLUTION ----- will fix later*/
+.accordion-button::after,.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230075ff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/*mana management panel*/
+.mana-management{
+	box-shadow: 1px 0 2px #171921;
+}
 /*vertical scaling for shorter displays*/
 @media(max-height: 700px){
 		.sidebar-footer, .sidebar-footer-no-sim{
@@ -295,12 +311,15 @@ footer{
 
 /*minimum size of sidebar and sidebar text*/
 @media(max-width: 980px){
-	.sidebar-menu-item{
+	/*.sidebar-menu-item{
 		font-size: 0.8rem;
-	}
+	}*/
 	.form-area-2{
 		flex-direction: column;
-		gap: 20px;
+	}
+	.form-area-1, .form-area-2{
+		gap: 0px;
+		margin-bottom: 20px;
 	}
 }
 @media(max-width: 1050px){
@@ -338,10 +357,10 @@ footer{
 		flex-direction: row;
 	}
 	.sidebar-menu-item label{
-		width: 115px;
+		width: 150px;
 	}
 	.sidebar-menu-item select, .sidebar-menu-item input{
-		width: 100px;
+		width: 150px;
 	}
 	body{
 		margin-left: 0px;

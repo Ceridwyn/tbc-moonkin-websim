@@ -7,7 +7,7 @@
  {% endif %} -->
 	<!-- <section> -->
    	<form action="{{ url_for('simulator.simulate_fight') }}" method="post" class="sim-box"> 
-    	<div class="row gy-5 form-area-1">
+    	<section class="row gy-5 form-area-1">
     		<!-- <div class="col-12"> -->
 					<div class="col-xl-6">
 						<div class="p-3 form-panel">
@@ -199,7 +199,7 @@
 									
 							<!-- Adding Mana talents -->
 							<hr class="divider"></hr>
-							<li>
+							<div class="form-item">
 								<label for="dreamstate">Dreamstate points</label> 
 								<select id="dreamstate" name="dreamstate">
 											<option class="d-none" value="{{dreamstate}}"></option>
@@ -207,8 +207,8 @@
 											<option value="2">2 Points</option>
 											<option value="3" selected>3 Points</option>
 								</select>
-							</li>
-							<li>
+							</div>
+							<div class="form-item">
 								<label for="intensity">Intensity points</label> 
 								<select id="intensity" name="intensity">
 											<option class="d-none" value="{{intensity}}"></option>
@@ -216,13 +216,13 @@
 											<option value="2">2 Points</option>
 											<option value="3" selected>3 Points</option>
 								</select>
-							</li>
+							</div>
 						</div>
 					</div>
 				<!-- </div> -->
-			</div>
+			</section>
 			<br/>
-			<div class="row gy-5 form-area-2">		
+			<section class="row gy-5 form-area-2">		
 				<div class="col-sm col-lg">
 					<div class="p-3 form-panel">
 						<h2 class="form-panel-title">Buffs (1/2)</h2>
@@ -412,109 +412,128 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 			<br/>
 			<!-- Mana -->
-			<div class="row gy-5 form-area-2">		
-				<div class="col-sm col-lg">
+			<section class="row gy-5 form-area-3">		
+				<div class="col-md col-lg-12 col-xl-6">
 					<div class="p-3 form-panel">
-						<h2 class="form-panel-title">Mana Mana</h2>
-						<div>
-							<input type="checkbox" id="is_manapot" name="is_manapot" value="is_manapot" 
+						<h2 class="form-panel-title">Mana Management</h2>
+						<div class="mana-box d-flex justify-content-between align-items-center">
+							<label id="mana-head" for="is_mana_simulated">Sim mana management ? (takes more time)</label>
+							<input type="checkbox" id="is_mana_simulated" name="is_mana_simulated" value="										is_mana_simulated"
 							{% if buffs is defined %}
-								{% if buffs.is_manapot %}checked {% endif %}
-								{% else %} checked 
+								{% if is_mana_simulated %}checked {% endif %}
+								{% else %}
 							{% endif %} >
-							<label for="is_manapot">Mana potions usage</label>
 						</div>
-						<div>
-							<input type="checkbox" id="is_destruction_potion" name="is_destruction_potion" value="is_destruction_potion" 
-							{% if buffs is defined %}
-								{% if buffs.is_destruction_potion %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_destruction_potion">Destruction potion usage (you must disable Mana Potions first)</label>
+						<div class="accordion bg-dark d-none mana-management" id="mana-management">
+							<div class="accordion-item bg-dark">
+								<p class="accordion-header bg-dark" id="mana-head">
+								<button id="mana-management-button" class="accordion-button bg-dark text-white text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Mana Options
+					      </button>
+								</p>
+								<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="mana-head" data-bs-parent="#mana-management">
+									<div class="accordion-body">
+										<ul class="mana-options">
+											<li class="mana-config">
+												<input type="checkbox" id="is_manapot" name="is_manapot" value="is_manapot" 
+												{% if buffs is defined %}
+													{% if buffs.is_manapot %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_manapot">Mana potions usage</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_destruction_potion" name="is_destruction_potion" value="is_destruction_potion" 
+												{% if buffs is defined %}
+													{% if buffs.is_destruction_potion %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_destruction_potion">Destruction potion usage (you must disable Mana Potions first)</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_bowis" name="is_bowis" value="is_bowis"
+												{% if buffs is defined %}
+													{% if buffs.is_bowis %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_bowis">Benediction of Wisdom</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_mana_oil" name="is_mana_oil" value="is_mana_oil" 
+												{% if buffs is defined %}
+													{% if buffs.is_mana_oil %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_mana_oil">Mana oil</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_rune" name="is_rune" value="is_rune"
+												{% if buffs is defined %}
+													{% if buffs.is_rune %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_rune">Dark/Demonic Runes usage</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_innervate" name="is_innervate" value="is_innervate" 
+												{% if buffs is defined %}
+													{% if buffs.is_innervate %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_innervate">Self Innervate</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_mana_spring" name="is_mana_spring" value="is_mana_spring"
+												{% if buffs is defined %}
+													{% if buffs.is_mana_spring %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_mana_spring">Mana Spring</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_shadow_priest" name="is_shadow_priest" value="is_shadow_priest"
+												{% if buffs is defined %}
+													{% if buffs.is_shadow_priest %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_shadow_priest">Shadowpriest in group</label>
+											</li>
+											<li id="spriest-dps" class="d-none">
+												<label for="shadow_priest_dps">Shadow Priest estimated DPS</label>  
+												<input class="gear-input" type="text" id="shadow_priest_dps" name="shadow_priest_dps" {% if buffs is defined %} value="{{ buffs.shadow_priest_dps}}" {% else %} value="0" {% endif %}/>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_judgment_of_wisdom" name="is_judgment_of_wisdom" value="is_judgment_of_wisdom"
+												{% if buffs is defined %}
+													{% if buffs.is_judgment_of_wisdom == 1.13 %}checked {% endif %}
+													{% else %}  
+												{% endif %} >
+												<label for="is_judgment_of_wisdom">Judgement of Wisdom</label>
+											</li>
+											<li class="mana-config">
+												<input type="checkbox" id="is_spirit_scroll" name="is_spirit_scroll" value="is_spirit_scroll"
+												{% if buffs is defined %}
+													{% if buffs.is_spirit_scroll %}checked {% endif %}
+													{% else %} 
+												{% endif %} >
+												<label for="is_spirit_scroll">Scroll of Spirit V</label>
+											</li>
+									</ul>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div>
-							<input type="checkbox" id="is_bowis" name="is_bowis" value="is_bowis"
-							{% if buffs is defined %}
-								{% if buffs.is_bowis %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_bowis">Benediction of Wisdom</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_mana_oil" name="is_mana_oil" value="is_mana_oil" 
-							{% if buffs is defined %}
-								{% if buffs.is_mana_oil %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_mana_oil">Mana oil</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_rune" name="is_rune" value="is_rune"
-							{% if buffs is defined %}
-								{% if buffs.is_rune %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_rune">Dark/Demonic Runes usage</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_innervate" name="is_innervate" value="is_innervate" 
-							{% if buffs is defined %}
-								{% if buffs.is_innervate %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_innervate">Self Innervate</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_mana_spring" name="is_mana_spring" value="is_mana_spring"
-							{% if buffs is defined %}
-								{% if buffs.is_mana_spring %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_mana_spring">Mana Spring</label>
-						</div>
-						<div>
-							<input type="checkbox" id="is_shadow_priest" name="is_shadow_priest" value="is_shadow_priest"
-							{% if buffs is defined %}
-								{% if buffs.is_shadow_priest %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_shadow_priest">Shadowpriest in group</label>
-						</div>
-						<div>
-						<li>
-							<label for="shadow_priest_dps">Shadow Priest estimated DPS</label>  
-							<input class="gear-input" type="text" id="shadow_priest_dps" name="shadow_priest_dps" {% if buffs is defined %} value="{{ buffs.shadow_priest_dps }}" {% else %} value="1000" {% endif %}/>
-						</li>
-						</div>
-						<div>
-							<input type="checkbox" id="is_judgment_of_wisdom" name="is_judgment_of_wisdom" value="is_judgment_of_wisdom"
-							{% if buffs is defined %}
-								{% if buffs.is_judgment_of_wisdom == 1.13 %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_judgment_of_wisdom">Judgement of Wisdom</label>
-						</div>		
-						<div>
-							<input type="checkbox" id="is_spirit_scroll" name="is_spirit_scroll" value="is_spirit_scroll"
-							{% if buffs is defined %}
-								{% if buffs.is_spirit_scroll %}checked {% endif %}
-								{% else %} checked 
-							{% endif %} >
-							<label for="is_spirit_scroll">Scroll of Spirit V</label>
-						</div>	
-						
 					</div>
 				</div>
-				<div class="col-sm col-lg">
-				</div>
-			</div>
+				<!-- <div class="col-sm col-lg">
+				</div> -->
+			</section>
 			<!-- Fin ajout Mana -->
 			
 			<br/>
-			<div class="row gy-5 sidebar">
+			<section class="row gy-5 sidebar">
 				<div class="col-sm col-lg">
 					<div class="p-3 form-panel sidebar-panel">
 						<div class="sidebar-content">
@@ -562,14 +581,14 @@
 										<input type="text" name="loop_count" value="10000" />
 									{% endif %} 
 								</li>
-								<li class="sidebar-menu-item">
-									<!-- <label for="is_mana_simulated">Sim mana management ? (takes more time)</label> -->
+								<!-- <li class="sidebar-menu-item">
+									<label for="is_mana_simulated">Sim mana management ? (takes more time)</label>
 									<input type="checkbox" id="is_mana_simulated" name="is_mana_simulated" value="is_mana_simulated"
 									{% if buffs is defined %}
 										{% if is_mana_simulated %}checked {% endif %}
 										{% else %} checked
 									{% endif %} >
-								</li>
+								</li> -->
 							</ul>
 							<input type="submit" class="submit-btn" id="submitBtn" value="Simulate !" />
 						</div>
@@ -592,12 +611,12 @@
 							<a href="https://discord.gg/9y8ethbkUQ">
 				        <img class="server-icon" src="/static/img/moonkinIcon.jpg" alt="Discord Server Icon"></img> 
 				        <p class="discIconText">Join the Discord!</p>
-				      </a>
+				      </a> 
 						</div>
 					</div>
 					
 				</div>	
-			</div>
+			</section>
 		</form>
 	<!-- </section> -->
 {% endblock %}
