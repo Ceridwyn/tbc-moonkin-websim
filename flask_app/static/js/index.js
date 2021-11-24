@@ -12,6 +12,7 @@ var trink2 = document.getElementById('tinket2');
 var idol = document.getElementById('idol');
 var intensity = document.getElementById('intensity');
 var dreamstate = document.getElementById('dreamstate');
+var sel = document.getElementsByClassName('gear-select');
 
 //mana collapse button
 var manaButton = document.getElementById('mana-management-button');
@@ -47,15 +48,6 @@ function switchVis(){
         }
     }
 }
-
-//for elements that depend on one another, toggles visibility depending on the parent
-/*function isChecked(item){
-    item.addEventListener('click', function(){
-       item.checked ? manaSimDropdown.classList.remove('d-none') : manaSimDropdown.classList.add('d-none');
-         console.log(manaButton.attributes[4].value); 
-    });
-}*/
-
 //on page load
 window.addEventListener('load', (event) => {
     console.log(simManaCheck.checked);
@@ -132,7 +124,20 @@ window.addEventListener('load', (event) => {
        spriestCheck.checked ? spriestBox.classList.remove('d-none') : spriestBox.classList.add('d-none');
     });
 
-
+    //stop the dropdown from animating while it's open
+    let selects = document.getElementsByClassName('select');
+    for(let i of selects){
+        i.addEventListener('focusin', function(){
+            i.classList.add('stopAnimate');
+            console.log('should not animate');
+            //console.log(i.classList);
+        })
+        i.addEventListener('focusout', function(){
+            i.classList.remove('stopAnimate');
+            console.log('should animate');
+            //console.log(i.classList);
+        })
+    }
 });
 //adjusts certain elements' visibility at diff viewport sizes on resize
 window.onresize = switchVis;
