@@ -13,34 +13,35 @@
 						<div class="p-3 form-panel">
 							<h2 class="form-panel-title">Stuff Values </h2>
 				 			<ul class="stuff-values">
-								<li>
-									<label for="intel">Intellect</label>  
-									<input class="gear-input" type="text" id ="intel" name="intel" {% if toon is defined %} value="{{ toon.intel }}" {% else %} value="100" {% endif %} />
+								<li class="gear-val">
+									<label class="label" for="intel">Intellect</label>  
+									<input class="gear-input textAnimate" type="text" id ="intel" name="intel" {% if toon is defined %} value="{{ toon.intel }}" {% else %} value="100" {% endif %} />
+
 								</li>
-								<li>
-									<label for="spirit">Spirit</label>
-									<input class="gear-input" type="text" id="spirit" name="spirit" {% if toon is defined %} value="{{ toon.spirit }}" {% else %} value="100" {% endif %}/>
+								<li class="gear-val">
+									<label class="label" for="spirit">Spirit</label>
+									<input class="gear-input textAnimate" type="text" id="spirit" name="spirit" {% if toon is defined %} value="{{ toon.spirit }}" {% else %} value="100" {% endif %}/>
 								</li>
-								<li>
-									<label for="spellpower">Spellpower</label>
-									<input class="gear-input" type="text" id="spellpower" name="spellpower" {% if toon is defined %} value="{{ toon.spellpower }}" {% else %} value="500" {% endif %}/>
+								<li class="gear-val">
+									<label class="label" for="spellpower">Spellpower</label>
+									<input class="gear-input textAnimate" type="text" id="spellpower" name="spellpower" {% if toon is defined %} value="{{ toon.spellpower }}" {% else %} value="500" {% endif %}/>
 								</li>
-								<li>
-									<label for="spell_hit">Spell Hit Value (not percent)</label>  
-									<input class="gear-input" type="text" id="spell_hit" name="spell_hit" {% if toon is defined %} value="{{ toon.hit_score }}" {% else %} value="100" {% endif %}/>
+								<li class="gear-val">
+									<label class="label" for="spell_hit">Spell Hit Value (not percent)</label>  
+									<input class="gear-input textAnimate" type="text" id="spell_hit" name="spell_hit" {% if toon is defined %} value="{{ toon.hit_score }}" {% else %} value="100" {% endif %}/>
 								</li>
-								<li>
-									<label for="spell_crit">Spell Crit Value (not percent)</label>  
-									<input class="gear-input" type="text" id="spell_crit" name="spell_crit" {% if toon is defined %} value="{{ toon.crit_score }}" {% else %} value="100" {% endif %}/>
+								<li class="gear-val">
+									<label class="label" for="spell_crit">Spell Crit Value (not percent)</label>  
+									<input class="gear-input textAnimate" type="text" id="spell_crit" name="spell_crit" {% if toon is defined %} value="{{ toon.crit_score }}" {% else %} value="100" {% endif %}/>
 								</li>
-								<li>
-									<label for="spell_haste">Spell Haste Value (not percent)</label>  
-									<input class="gear-input" type="text" id="spell_haste" name="spell_haste" {% if toon is defined %} value="{{ toon.haste }}" {% else %} value="0" {% endif %}/>
+								<li class="gear-val">
+									<label class="label" for="spell_haste">Spell Haste Value (not percent)</label>  
+									<input class="gear-input textAnimate" type="text" id="spell_haste" name="spell_haste" {% if toon is defined %} value="{{ toon.haste }}" {% else %} value="0" {% endif %}/>
 								</li>
 								<hr class="divider"></hr>
 								<li>
-									<label for="tinket1">Trinket 1</label> 
-									<select id="tinket1" name="trinket1">
+									<label class="label" for="tinket1">Trinket 1</label> 
+									<select class="select selAnimate" id="tinket1" name="trinket1">
 										<option class="d-none" value="{{trink1}}"></option>
 										<option value="Icon of the Silver Crescent" selected>Icon of the Silver Crescent</option>
 										<option value="Eye of Magtheridon">Eye of Magtheridon</option>
@@ -61,8 +62,8 @@
 									</select>
 								</li>
 								<li>
-									<label for="tinket2">Trinket 2</label>
-									<select id="tinket2" name="trinket2">
+									<label class="label" for="tinket2">Trinket 2</label>
+									<select class="select selAnimate" id="tinket2" name="trinket2">
 										<option class="d-none" value="{{trink2}}"></option>
 										<option value="Icon of the Silver Crescent">Icon of the Silver Crescent</option>
 										<option value="Eye of Magtheridon">Eye of Magtheridon</option>
@@ -83,8 +84,8 @@
 									</select>
 								</li>
 								<li>
-									<label for="idol">Idol</label> 
-									<select id="idol" name="idol">
+									<label class="label" for="idol">Idol</label> 
+									<select class="select selAnimate" id="idol" name="idol">
 										<option class="d-none" value="{{reqIdol}}"></option>
 										<option value="Idol of the Raven Goddess" selected>Idol of the Raven Goddess</option>
 										<option value="Idol of the Moongoddess">Idol of the Moongoddess</option>
@@ -98,7 +99,7 @@
 								{% if toon is defined %}
 									{% if toon.is_spellstrike %}checked {% endif %} 
 								{% endif %} >
-								<label for="is_spellstrike">Spellstrike Set Bonus</label>
+								<label class="label" for="is_spellstrike">Spellstrike Set Bonus</label>
 							</div>
 							<div>
 								<input type="checkbox" id="is_spellfire" name="is_spellfire" value="is_spellfire"
@@ -106,7 +107,7 @@
 									{% if toon.is_spellfire %} checked {% endif %}
 								{% else %} checked 
 								{% endif %} >
-								<label for="is_spellfire">Spellfire Set Bonus</label>
+								<label class="label" for="is_spellfire">Spellfire Set Bonus</label>
 							</div>
 							<div>
 								<input type="checkbox" id="is_csd" name="is_csd" value="is_csd" 
@@ -114,7 +115,7 @@
 									{% if toon.is_csd %}checked {% endif %}
 								{% else %} checked 
 								{% endif %} >
-								<label for="is_csd">Chaotic Skyfire Diamond (Meta Gem)</label>
+								<label class="label" for="is_csd">Chaotic Skyfire Diamond (Meta Gem)</label>
 							</div>
 			 			</div>
 			 		</div>
@@ -130,7 +131,7 @@
 									{% if toon.balance_of_power %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="balance_of_power">Balance of Power</label>
+								<label class="label" for="balance_of_power">Balance of Power</label>
 							</div>
 							<div>
 								<input type="checkbox" id="focused_starlight" name="focused_starlight" value="focused_starlight" 
@@ -138,7 +139,7 @@
 									{% if toon.focused_starlight %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="focused_starlight">Focused Starlight</label>
+								<label class="label" for="focused_starlight">Focused Starlight</label>
 							</div>
 							<div>
 								<input type="checkbox" id="moonkin_form" name="moonkin_form" value="moonkin_form" 
@@ -146,7 +147,7 @@
 									{% if toon.moonkin_form %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="moonkin_form">Moonkin Form</label>
+								<label class="label" for="moonkin_form">Moonkin Form</label>
 							</div>
 							<div>
 								<input type="checkbox" id="improved_mf" name="improved_mf" value="improved_mf" 
@@ -154,7 +155,7 @@
 									{% if toon.improved_mf %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="improved_mf">Improved Moonfire</label>
+								<label class="label" for="improved_mf">Improved Moonfire</label>
 							</div>
 							<div>
 								<input type="checkbox" id="starlight_wrath" name="starlight_wrath" value="starlight_wrath" 
@@ -162,7 +163,7 @@
 									{% if toon.starlight_wrath %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="starlight_wrath">Starlight Wrath</label>
+								<label class="label" for="starlight_wrath">Starlight Wrath</label>
 							</div>
 							<div>
 								<input type="checkbox" id="vengeance" name="vengeance" value="vengeance"
@@ -170,7 +171,7 @@
 									{% if toon.vengeance %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="vengeance">Vengeance</label>
+								<label class="label" for="vengeance">Vengeance</label>
 							</div>
 							<div>
 								<input type="checkbox" id="lunar_guidance" name="lunar_guidance" value="lunar_guidance"
@@ -178,7 +179,7 @@
 									{% if toon.lunar_guidance %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="lunar_guidance">Lunar Guidance</label>
+								<label class="label" for="lunar_guidance">Lunar Guidance</label>
 							</div>
 							<div>
 								<input type="checkbox" id="moonfury" name="moonfury" value="moonfury"
@@ -186,7 +187,7 @@
 									{% if toon.moonfury == 1.1 %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="moonfury">Moonfury</label>
+								<label class="label" for="moonfury">Moonfury</label>
 							</div>	
 							<div>
 								<input type="checkbox" id="wrath_of_cenarius" name="wrath_of_cenarius" value="wrath_of_cenarius"
@@ -194,14 +195,14 @@
 									{% if toon.wrath_of_cenarius == 1.2 %}checked {% endif %}
 									{% else %} checked 
 								{% endif %} >
-								<label for="wrath_of_cenarius">Wrath of Cenarius</label>
+								<label class="label" for="wrath_of_cenarius">Wrath of Cenarius</label>
 							</div>
 									
 							<!-- Adding Mana talents -->
 							<hr class="divider"></hr>
 							<div class="form-item">
-								<label for="dreamstate">Dreamstate points</label> 
-								<select id="dreamstate" name="dreamstate">
+								<label class="label" for="dreamstate">Dreamstate points</label> 
+								<select class="select dreamstate dreamstateAnimate" id="dreamstate" name="dreamstate">
 											<option class="d-none" value="{{dreamstate}}"></option>
 											<option value="1">1 Point</option>
 											<option value="2">2 Points</option>
@@ -209,8 +210,8 @@
 								</select>
 							</div>
 							<div class="form-item">
-								<label for="intensity">Intensity points</label> 
-								<select id="intensity" name="intensity">
+								<label class="label" for="intensity">Intensity points</label> 
+								<select class="select dreamstate dreamstateAnimate" id="intensity" name="intensity">
 											<option class="d-none" value="{{intensity}}"></option>
 											<option value="1">1 Point</option>
 											<option value="2">2 Points</option>
@@ -232,7 +233,7 @@
 								{% if buffs.is_motw %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_motw">(Improved) Mark of the Wild</label>
+							<label class="label" for="is_motw">(Improved) Mark of the Wild</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_divine_spirit" name="is_divine_spirit" value="is_divine_spirit"
@@ -240,7 +241,7 @@
 								{% if buffs.is_divine_spirit %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_divine_spirit">Improved Divine Spirit</label>
+							<label class="label" for="is_divine_spirit">Improved Divine Spirit</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_arcane_brilliance" name="is_arcane_brilliance" value="is_arcane_brilliance" 
@@ -248,7 +249,7 @@
 								{% if buffs.is_arcane_brilliance %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_arcane_brilliance">Arcane Brilliance</label>
+							<label class="label" for="is_arcane_brilliance">Arcane Brilliance</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_totem_of_wrath" name="is_totem_of_wrath" value="is_totem_of_wrath"
@@ -256,7 +257,7 @@
 								{% if buffs.is_totem_of_wrath %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_totem_of_wrath">Totem of wrath</label>
+							<label class="label" for="is_totem_of_wrath">Totem of wrath</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_wrath_of_air" name="is_wrath_of_air" value="is_wrath_of_air" 
@@ -264,7 +265,7 @@
 								{% if buffs.is_wrath_of_air %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_wrath_of_air">Wrath of Air</label>
+							<label class="label" for="is_wrath_of_air">Wrath of Air</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_draenei_in_group" name="is_draenei_in_group" value="is_draenei_in_group"
@@ -272,7 +273,7 @@
 								{% if buffs.is_draenei_in_group %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_draenei_in_group">Draenei in group (spellhit)</label>
+							<label class="label" for="is_draenei_in_group">Draenei in group (spellhit)</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_curse_of_elements" name="is_curse_of_elements" value="is_curse_of_elements"
@@ -280,7 +281,7 @@
 								{% if buffs.curse_of_elements > 1 %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_curse_of_elements">Curse of Elements</label>
+							<label class="label" for="is_curse_of_elements">Curse of Elements</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_improved_coe" name="is_improved_coe" value="is_improved_coe"
@@ -288,7 +289,7 @@
 								{% if buffs.curse_of_elements == 1.13 %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_improved_coe">Improved Curse of Elements</label>
+							<label class="label" for="is_improved_coe">Improved Curse of Elements</label>
 						</div>		
 						<div>
 							<input type="checkbox" id="is_blessing_kings" name="is_blessing_kings" value="is_blessing_kings"
@@ -296,7 +297,7 @@
 								{% if buffs.is_blessing_kings %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_blessing_kings">Blessing of Kings</label>
+							<label class="label" for="is_blessing_kings">Blessing of Kings</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_crusader" name="is_crusader" value="is_crusader"
@@ -304,7 +305,7 @@
 								{% if buffs.is_crusader %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_crusader">Improved Judgement of Crusader</label>
+							<label class="label" for="is_crusader">Improved Judgement of Crusader</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_sham_4_piece" name="is_sham_4_piece" value="is_sham_4_piece"
@@ -312,7 +313,7 @@
 								{% if buffs.is_sham_4_piece %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_sham_4_piece">Shaman T4 2 pieces</label>
+							<label class="label" for="is_sham_4_piece">Shaman T4 2 pieces</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_flask" name="is_flask" value="is_flask"
@@ -320,7 +321,7 @@
 								{% if buffs.is_flask %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_flask">Flask of Blinding Light</label>
+							<label class="label" for="is_flask">Flask of Blinding Light</label>
 						</div>
 					</div>
 				</div>
@@ -333,7 +334,7 @@
 								{% if buffs.is_food %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_food">Food consumable (20sp)</label>
+							<label class="label" for="is_food">Food consumable (20sp)</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_oil" name="is_oil" value="is_oil"
@@ -341,21 +342,21 @@
 								{% if buffs.is_oil %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_oil">Brilliant Wizard Oil</label>
+							<label class="label" for="is_oil">Brilliant Wizard Oil</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_twilight_owl" name="is_twilight_owl" value="is_twilight_owl"
 							{% if buffs is defined %}
 								{% if buffs.is_twilight_owl %}checked {% endif %}
 							{% endif %} >
-							<label for="is_twilight_owl">Twilight Owl necklace in group</label>
+							<label class="label" for="is_twilight_owl">Twilight Owl necklace in group</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_eye_of_night" name="is_eye_of_night" value="is_eye_of_night"
 							{% if buffs is defined %}
 								{% if buffs.is_eye_of_night %}checked {% endif %}
 							{% endif %} >
-							<label for="is_eye_of_night">Eye of the night necklace in group</label>
+							<label class="label" for="is_eye_of_night">Eye of the night necklace in group</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_T5" name="is_T5" value="is_T5"
@@ -363,21 +364,21 @@
 								{% if buffs.is_T5 %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_T5">T5 4 pieces bonus</label>
+							<label class="label" for="is_T5">T5 4 pieces bonus</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_T6_2" name="is_T6_2" value="is_T6_2"
 							{% if buffs is defined %}
 								{% if buffs.is_T6_2 %}checked {% endif %}
 							{% endif %} >
-							<label for="is_T6_2">T6 2 pieces bonus</label>
+							<label class="label" for="is_T6_2">T6 2 pieces bonus</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_T6_4" name="is_T6_4" value="is_T6_4"
 							{% if buffs is defined %}
 								{% if buffs.is_T6_4 %}checked {% endif %}
 							{% endif %} >
-							<label for="is_T6_4">T6 4 pieces bonus</label>
+							<label class="label" for="is_T6_4">T6 4 pieces bonus</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_misery" name="is_misery" value="is_misery"
@@ -385,7 +386,7 @@
 								{% if buffs.misery == 1.05 %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_misery">Misery debuff (SP in raid)</label>
+							<label class="label" for="is_misery">Misery debuff (SP in raid)</label>
 						</div>	
 						<div>
 							<input type="checkbox" id="is_drums" name="is_drums" value="is_drums"
@@ -393,7 +394,7 @@
 								{% if buffs.is_drums %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_drums">Drums of War</label>
+							<label class="label" for="is_drums">Drums of War</label>
 						</div>
 						<div>
 							<input type="checkbox" id="is_lust" name="is_lust" value="is_lust"
@@ -401,11 +402,11 @@
 								{% if buffs.is_lust %}checked {% endif %}
 								{% else %} checked 
 							{% endif %} >
-							<label for="is_lust">Bloodlust / Heroism</label>
+							<label class="label" for="is_lust">Bloodlust / Heroism</label>
 						</div>
 						<div>
-							<label>Number of lusts</label>
-							<select id="lust_count" name="lust_count">
+							<label class="label">Number of lusts</label>
+							<select class="select lust lustAnimate" id="lust_count" name="lust_count">
 								<option value="1">1</option>
 								<option value="2">2</option>
 							</select>
@@ -420,7 +421,7 @@
 					<div class="p-3 form-panel">
 						<h2 class="form-panel-title">Mana Management</h2>
 						<div class="mana-box d-flex justify-content-between align-items-center">
-							<label id="mana-head" for="is_mana_simulated">Sim mana management ? (takes more time)</label>
+							<label class="label" id="mana-head" for="is_mana_simulated">Sim mana management ? (takes more time)</label>
 							<input type="checkbox" id="is_mana_simulated" name="is_mana_simulated" value="										is_mana_simulated"
 							{% if buffs is defined %}
 								{% if is_mana_simulated %}checked {% endif %}
@@ -433,7 +434,7 @@
 								<button id="mana-management-button" class="accordion-button bg-dark text-white text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Mana Options
 					      </button>
 								</p>
-								<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="mana-head" data-bs-parent="#mana-management">
+								<div id="collapseOne" class="accordion-collapse collapse" aria-label class="label"ledby="mana-head" data-bs-parent="#mana-management">
 									<div class="accordion-body">
 										<ul class="mana-options">
 											<li class="mana-config">
@@ -442,7 +443,7 @@
 													{% if buffs.is_manapot %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_manapot">Mana potions usage</label>
+												<label class="label" for="is_manapot">Mana potions usage</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_destruction_potion" name="is_destruction_potion" value="is_destruction_potion" 
@@ -450,7 +451,7 @@
 													{% if buffs.is_destruction_potion %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_destruction_potion">Destruction potion usage (you must disable Mana Potions first)</label>
+												<label class="label" for="is_destruction_potion">Destruction potion usage (you must disable Mana Potions first)</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_bowis" name="is_bowis" value="is_bowis"
@@ -458,7 +459,7 @@
 													{% if buffs.is_bowis %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_bowis">Benediction of Wisdom</label>
+												<label class="label" for="is_bowis">Benediction of Wisdom</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_mana_oil" name="is_mana_oil" value="is_mana_oil" 
@@ -466,7 +467,7 @@
 													{% if buffs.is_mana_oil %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_mana_oil">Mana oil</label>
+												<label class="label" for="is_mana_oil">Mana oil</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_rune" name="is_rune" value="is_rune"
@@ -474,7 +475,7 @@
 													{% if buffs.is_rune %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_rune">Dark/Demonic Runes usage</label>
+												<label class="label" for="is_rune">Dark/Demonic Runes usage</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_innervate" name="is_innervate" value="is_innervate" 
@@ -482,7 +483,7 @@
 													{% if buffs.is_innervate %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_innervate">Self Innervate</label>
+												<label class="label" for="is_innervate">Self Innervate</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_mana_spring" name="is_mana_spring" value="is_mana_spring"
@@ -490,7 +491,7 @@
 													{% if buffs.is_mana_spring %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_mana_spring">Mana Spring</label>
+												<label class="label" for="is_mana_spring">Mana Spring</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_shadow_priest" name="is_shadow_priest" value="is_shadow_priest"
@@ -498,11 +499,11 @@
 													{% if buffs.is_shadow_priest %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_shadow_priest">Shadowpriest in group</label>
+												<label class="label" for="is_shadow_priest">Shadowpriest in group</label>
 											</li>
 											<li id="spriest-dps" class="d-none">
-												<label for="shadow_priest_dps">Shadow Priest estimated DPS</label>  
-												<input class="gear-input" type="text" id="shadow_priest_dps" name="shadow_priest_dps" {% if buffs is defined %} value="{{ buffs.shadow_priest_dps}}" {% else %} value="0" {% endif %}/>
+												<label class="label" for="shadow_priest_dps">Shadow Priest estimated DPS</label>  
+												<input class="gear-input textAnimate" type="text" id="shadow_priest_dps" name="shadow_priest_dps" {% if buffs is defined %} value="{{ buffs.shadow_priest_dps}}" {% else %} value="0" {% endif %}/>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_judgment_of_wisdom" name="is_judgment_of_wisdom" value="is_judgment_of_wisdom"
@@ -510,7 +511,7 @@
 													{% if buffs.is_judgment_of_wisdom == 1.13 %}checked {% endif %}
 													{% else %}  
 												{% endif %} >
-												<label for="is_judgment_of_wisdom">Judgement of Wisdom</label>
+												<label class="label" for="is_judgment_of_wisdom">Judgement of Wisdom</label>
 											</li>
 											<li class="mana-config">
 												<input type="checkbox" id="is_spirit_scroll" name="is_spirit_scroll" value="is_spirit_scroll"
@@ -518,7 +519,7 @@
 													{% if buffs.is_spirit_scroll %}checked {% endif %}
 													{% else %} 
 												{% endif %} >
-												<label for="is_spirit_scroll">Scroll of Spirit V</label>
+												<label class="label" for="is_spirit_scroll">Scroll of Spirit V</label>
 											</li>
 									</ul>
 									</div>
@@ -540,9 +541,9 @@
 							<h2 class="form-panel-title">Encounter simulation</h2>
 							<ul class="sidebar-menu">
 								<li class="sidebar-menu-item">
-									<label for="fight_duration">Fight Duration (in seconds)</label> 
+									<label class="label" for="fight_duration">Fight Duration (in seconds)</label> 
 									{% if nb_length is defined %} 
-									<select class="fight-duration" id="fight_duration" name="fight_duration" value="{{nb_length}}">
+									<select class="select fight-duration selAnimate" id="fight_duration" name="fight_duration" value="{{nb_length}}">
 										<option class="d-none" value="{{nb_length}}"></option>
 										<option value="60">1 Minute</option>
 										<option value="90">1 Minute 30 sec</option>
@@ -557,7 +558,7 @@
 										<option value="360">6 Minutes</option>
 									</select>
 									{% else %}
-									<select class="fight-duration" id="fight_duration" name="fight_duration">
+									<select class="select fight-duration fdAnimate" id="fight_duration" name="fight_duration">
 										<option value="60">1 Minute</option>
 										<option value="90">1 Minute 30 sec</option>
 										<option value="120">2 Minutes</option>
@@ -574,15 +575,15 @@
 										
 								</li>
 								<li class="sidebar-menu-item">
-									<label>Number of loops (less than 100k)</label>  
+									<label class="label">Number of loops (less than 100k)</label>  
 									{% if nb_loops is defined %}
-										<input type="text" name="loop_count" value="{{nb_loops}}" />
+										<input class="gear-input loop-input fdAnimate fight-duration" type="text" name="loop_count" value="{{nb_loops}}" />
 										{% else %} 
-										<input type="text" name="loop_count" value="10000" />
+										<input class="gear-input loop-input fdAnimate" type="text" name="loop_count" value="10000" />
 									{% endif %} 
 								</li>
 								<!-- <li class="sidebar-menu-item">
-									<label for="is_mana_simulated">Sim mana management ? (takes more time)</label>
+									<label class="label" for="is_mana_simulated">Sim mana management ? (takes more time)</label>
 									<input type="checkbox" id="is_mana_simulated" name="is_mana_simulated" value="is_mana_simulated"
 									{% if buffs is defined %}
 										{% if is_mana_simulated %}checked {% endif %}

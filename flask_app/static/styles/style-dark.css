@@ -54,28 +54,48 @@ li, .form-item{
 	align-items: center;
 	gap: 5px;
 }
-/*making the select dropdowns prettier*/
-input[type="text"], select{
+/*styling selects and text boxes*/
+.gear-input{
+	width: 50px;
+	border-style: none;
+	border-bottom: 2px solid white;
+}
+.gear-input, .select{
 	background: none;
-	border-style: inset;
-	border-width: 0px 0px 2px 0px;
-	border-color: white;
+	/*border-width: 0px 0px 2px 0px;
+	border-color: white;*/
 	color: white;
 	text-align: right;
+	text-overflow: ellipsis;
 }
-select:focus {
+.loop-input{
+	width: 50%;
+}
+.select:focus {
   background-color: #25292d;
   color: white;
   border-style: none;
   outline: none;
 }
-select option:hover{
+.select option:hover{
 	background-color: var(--gray);
 }
-select:hover, input[type="text"]:hover{
+.select{
+	border-style: none;
+	border-bottom: 2px solid white;
+	width: 50%;
+}
+.dreamstate{
+	width: 25%;
+}
+.lust{
+	width: 25px;
+}
+/*select:hover, input[type="text"]:hover{
 	border-width: 0px 0px 4px 0px;
 	border-style: inset;
-}
+}*/
+
 
 /*adding some more breathing room in the talents box*/
 legend{
@@ -127,10 +147,19 @@ legend{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-.gear-input{
-	width: 75px;
-}
 
+
+/*.gear-input::after{
+	content: "Hello"; 
+  display: block; 
+  margin: 0 auto; 
+  width: 50%;
+  height:10px; 
+  padding-top: 5px;
+  border-bottom: 2px solid white;
+  position:relative;
+  z-index:100; 
+}*/
 .sim-box{
 	padding: 20px;
 	margin-left: 3vw;
@@ -160,7 +189,8 @@ legend{
 }
 .fight-duration{
 	font-size: 0.8rem;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	align-self: center;
 }
 .sidebar-panel{
 	background-color: #343a40;
@@ -173,6 +203,7 @@ legend{
 .sidebar-menu-item{
 	flex-direction: column;
 	margin-bottom: 50px;
+	align-items: center;
 }
 
 /*styling for simulate button*/
@@ -249,7 +280,7 @@ footer{
 	box-shadow: 0px 5px 7px #212529;
 }
 .server-icon:hover{
-	border: 5px solid #0075ff
+	border: 5px solid #ffffff00
 
 }
 
@@ -270,6 +301,110 @@ footer{
 .mana-management{
 	box-shadow: 1px 0 2px #171921;
 }
+
+/*animation area*/
+
+/*animation class*/
+.stopAnimate{
+	animation-play-state: paused;
+}
+.textAnimate{
+	animation-name: shrinkBorder;
+	animation-duration: 0.5s;
+}
+.textAnimate:hover{
+	animation-name: growBorder;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+.selAnimate{
+	animation-name: shrinkSelBorder;
+	animation-duration: 0.5s;
+
+}
+.selAnimate:hover{
+	animation-name: growSelBorder;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+.fdAnimate{
+	animation-name: shrinkFDBorder;
+	animation-duration: 0.5s;
+
+}
+.fdAnimate:hover{
+	animation-name: growFDBorder;
+	animation-duration: 0.5s;	
+	animation-fill-mode: forwards;
+}
+
+/*nice class name*/
+.lustAnimate{
+	animation-name: shrinkLustBorder;
+	animation-duration: 0.5s;
+}
+.lustAnimate:hover{
+	animation-name: growLustBorder;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+.dreamstateAnimate{
+	animation-name: shrinkDSBorder;
+	animation-duration: 0.5s;
+}
+.dreamstateAnimate:hover{
+	animation-name: growDSBorder;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+/*animations*/
+@keyframes growBorder {
+	from {width: 50px}
+	to {width: 75px}
+}
+
+@keyframes shrinkBorder {
+	from {width: 75px}
+	to {width: 50px}
+}
+
+@keyframes growSelBorder {
+	from {width: 50%}
+	to {width: 55%}
+}
+
+@keyframes shrinkSelBorder {
+	from {width: 55%}
+	to {width: 50%}
+}
+
+@keyframes growFDBorder {
+	from {width: 50%}
+	to {width: 65%}
+}
+
+@keyframes shrinkFDBorder {
+	from {width: 65%}
+	to {width: 50%}
+}
+@keyframes growLustBorder{
+	from {width: 25px}
+	to {width: 45px}
+}
+@keyframes shrinkLustBorder{
+	from {width: 45px}
+	to {width: 25px}
+}
+@keyframes growDSBorder{
+	from {width: 25%}
+	to {width: 30%}
+}
+@keyframes shrinkDSBorder{
+	from {width: 30%}
+	to {width: 25%}
+}
+/*--------------*/
+
 /*vertical scaling for shorter displays*/
 @media(max-height: 700px){
 		.sidebar-footer, .sidebar-footer-no-sim{
@@ -359,9 +494,9 @@ footer{
 	.sidebar-menu-item label{
 		width: 150px;
 	}
-	.sidebar-menu-item select, .sidebar-menu-item input{
+	/*.sidebar-menu-item select, .sidebar-menu-item input{
 		width: 150px;
-	}
+	}*/
 	body{
 		margin-left: 0px;
 	}
@@ -383,6 +518,9 @@ footer{
 	.loadingSpinner{
 		height: 90px;
 	}
+	.fight-duration{
+		max-width: 50%;
+	}
 
 }
 
@@ -397,8 +535,8 @@ footer{
 
 /*on mobile, list items are stacked vertically*/
 @media(max-width: 550px){
-	li{
-		flex-direction: column;
-		align-content: space-around;
+	li select{
+		max-width: 50%;
+		text-align: right;
 	}
 }
