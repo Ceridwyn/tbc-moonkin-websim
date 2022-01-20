@@ -29,6 +29,14 @@ window.addEventListener('load', (event) => {
     //takes the preserved value and divides it by 30, then subtracts by 1 to account for indexing
     globalVars.simBox ? globalVars.fightDuration.options[((+globalVars.fightDuration.value) / 30) - 1].selected = true : '';
     globalVars.opts.forEach(i=>slotMemory(i));  //loops over user selects and calls the memory function
+    globalVars.simManaCheck.addEventListener('click', function(){
+        globalVars.simManaCheck.checked ? globalVars.manaSimDropdown.classList.remove('d-none') : globalVars.manaSimDropdown.classList.add('d-none');
+     });
+     //when spriest is checked, spriest dps appears
+     globalVars.spriestCheck.addEventListener('click', function(){
+        globalVars.spriestCheck.checked ? globalVars.spriestBox.classList.remove('d-none') : globalVars.spriestBox.classList.add('d-none');
+     });
+    
     document.getElementById('sim-text') ? //changes sidebar style to make room for simbox and focuses the sim numbers if they exist
     (document.getElementById('sidebar-footer').classList.remove('sidebar-footer-no-sim'), document.getElementById('sim-text').scrollIntoView()) : '';
     
@@ -42,13 +50,7 @@ window.addEventListener('load', (event) => {
         }
     }
     //when the mana sim checkbox is ticked, the mana options show up
-    globalVars.simManaCheck.addEventListener('click', function(){
-       globalVars.simManaCheck.checked ? globalVars.manaSimDropdown.classList.remove('d-none') : globalVars.manaSimDropdown.classList.add('d-none');
-    });
-    //when spriest is checked, spriest dps appears
-    globalVars.spriestCheck.addEventListener('click', function(){
-       globalVars.spriestCheck.checked ? globalVars.spriestBox.classList.remove('d-none') : globalVars.spriestBox.classList.add('d-none');
-    });
+    
     //stop the dropdown from animating while it's open
     let selects = document.getElementsByClassName('select');
     for(let i of selects){
